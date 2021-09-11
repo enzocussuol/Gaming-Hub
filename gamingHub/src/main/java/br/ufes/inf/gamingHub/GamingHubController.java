@@ -1,16 +1,12 @@
 package br.ufes.inf.gamingHub;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class GamingHubController {
-	@GetMapping("/ola")
-	public String getHelloWorld(@RequestParam(name="nome", defaultValue="Enzo") String nome,
-			@RequestParam(name="n", defaultValue="1") int n) {
-		String resultado = "";
-		for(int i = 0; i < n; i++) resultado += "<b>Olá!</b> " + nome + "<br>";
-		return resultado;
+@Controller
+public class GamingHubController{
+	@GetMapping("/GamingHub")
+	public String getIndex(){
+		return "index";
 	}
 }
