@@ -1,0 +1,12 @@
+body{
+	background-color: whitesmoke;
+}
+
+.caixaCabecalho{
+	width: 100%;
+	background-color: black;
+}
+
+.logo{
+	max-width: 7.5%;
+}
