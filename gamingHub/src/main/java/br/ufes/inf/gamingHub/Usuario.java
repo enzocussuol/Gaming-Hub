@@ -2,6 +2,8 @@ package br.ufes.inf.gamingHub;
 
 import java.util.LinkedList;
 
+import br.ufes.inf.gamingHub.catalogo.Jogo;
+
 public class Usuario {
 	private String nome;
 	private String email;

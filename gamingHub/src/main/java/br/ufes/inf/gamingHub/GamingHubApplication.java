@@ -9,6 +9,10 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.google.gson.Gson;
+
+import br.ufes.inf.gamingHub.catalogo.Appdetails;
+
 @SpringBootApplication
 public class GamingHubApplication {
 
@@ -34,5 +38,10 @@ public class GamingHubApplication {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		
+		Gson gson = new Gson();
+		Appdetails app = gson.fromJson(respostaHttp, Appdetails.class);
+		
+		GamingHubController.catalogo.getJogos().add(app.jogo);
 	}
 }

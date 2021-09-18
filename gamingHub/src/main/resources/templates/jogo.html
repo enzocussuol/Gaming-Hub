@@ -29,29 +29,11 @@
 			    </div>
 		   	</div>
 		   	<div class="col">
-				<div class="input-group mb-3">
-				  <input type="text" class="form-control" aria-label="Text input with dropdown button">
-				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
-				  <ul class="dropdown-menu dropdown-menu-end">
-				    <li><a class="dropdown-item" href="#">Mais jogados</a></li>
-				    <li><a class="dropdown-item" href="#">Em alta</a></li>
-				    <li><a class="dropdown-item" href="#">Lançamentos populares</a></li>
-				  </ul>
-				</div>
-				<div class="container">
-				  <div id="jogos" class="row">
-				    <div class="col-3" th:each="jogo: ${jogos}">
-				    	<a th:href="'http://localhost:8080/jogo?nome=' + ${jogo.dados.nome}">
- 					      	<img th:src="${jogo.dados.imagem}">
-			      			<h1 th:text="${jogo.dados.nome}"></h1>
-				    	</a>
-			     	</div>
-				  </div>
-				</div>
+		   		<p>Conteudo do jogo...</p>
 		   	</div>
 	  	</div>
 	</div>
-	
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
