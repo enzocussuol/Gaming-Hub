@@ -13,24 +13,14 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="text-center caixaCabecalho">
-    	<img src="/images/gamingHub.jpg" class="logo">
-    </div>
+    <div th:replace="~{cabecalho :: cabecalho}"></div>
     
     <div class="container">
 	  	<div class="row">
-		   	<div class="col-3 ">
-			    <h2>Entre ou cadastre-se agora mesmo para usufruir de todas as funcionalidades do Gaming Hub!</h2>
-			    <div class="container">
-					<div class="row">
-						<button type="button" class="btn btn-outline-secondary">Entrar</button>
-						<button type="button" class="btn btn-outline-secondary">Cadastrar</button>
-					</div>
-			    </div>
-		   	</div>
-		   	<div class="col">
-				<div class="input-group mb-3">
-				  <input type="text" class="form-control" aria-label="Text input with dropdown button">
+		   	<div th:replace="~{boasVindas :: boasVindas}"></div>
+		   	<div class="col caixaPrincipal">
+				<div class="input-group mb-3 caixaPesquisa">
+				  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Pesquise pelo nome de um jogo...">
 				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
 				  <ul class="dropdown-menu dropdown-menu-end">
 				    <li><a class="dropdown-item" href="#">Mais jogados</a></li>
@@ -39,13 +29,11 @@
 				  </ul>
 				</div>
 				<div class="container">
-				  <div id="jogos" class="row">
-				    <div class="col-3" th:each="jogo: ${jogos}">
-				    	<a th:href="'http://localhost:8080/jogo?nome=' + ${jogo.dados.nome}">
- 					      	<img th:src="${jogo.dados.imagem}">
-			      			<h1 th:text="${jogo.dados.nome}"></h1>
-				    	</a>
-			     	</div>
+				  <div class="row d-flex justify-content-center caixaJogos">
+			    	<a th:href="'http://localhost:8080/jogo?nome=' + ${jogo.dados.nome}" th:each="jogo: ${jogos}" class="col-3 caixaJogo">
+				      	<img th:src="${jogo.dados.imagem}" class="img-fluid">
+		      			<h1 th:text="${jogo.dados.nome}" class="nomeJogo"></h1>
+			    	</a>
 				  </div>
 				</div>
 		   	</div>

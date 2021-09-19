@@ -25,4 +25,27 @@ public class Dados {
 	public String website;
 	@SerializedName("developers")
 	public ArrayList<String> desenvolvedores;
+	
+	@Override
+	public String toString() {
+		String str = "";
+		
+		str += "tipo: " + tipo + "\n";
+		str += "nome: " + nome + "\n";
+		str += "id: " + id + "\n";
+		str += "gratuito: " + gratuito + "\n";
+		str += "descricaoDetalhada: " + descricaoDetalhada + "\n";
+		str += "sobreOJogo: " + sobreOJogo + "\n";
+		str += "descricaoCurta: " + descricaoCurta + "\n";
+		str += "imagem: " + imagem + "\n";
+		str += "website: " + website + "\n";
+		str += "desenvolvedores: ";
+		
+		for(int i = 0; i < desenvolvedores.size(); i++) {
+			str += desenvolvedores.get(i) + " ";
+		}
+		str += "\n";
+		
+		return str;
+	}
 }

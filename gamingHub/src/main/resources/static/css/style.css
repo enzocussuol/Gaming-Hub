@@ -8,9 +8,51 @@ body{
 }
 
 .logo{
-	max-width: 7.5%;
+	max-width: 5.5%;
 }
 
-#jogos{
-	background-color: lightcoral;
+.caixaLogin{
+	padding-top: 50px;
+}
+
+.caixaBotoesLogin{
+	margin-top: 40px;
+	padding: 10px;
+}
+
+.botaoEntrar{
+	margin-bottom: 10px;
+}
+
+.caixaPrincipal{
+	border-left: 1px solid black;
+}
+
+.caixaPesquisa{
+	padding-top: 55px;
+	max-width: 90%;
+	margin-left: 50%;
+	transform: translate(-50%, 0);
+}
+
+.caixaJogos{
+	padding-top: 20px;
+}
+
+.caixaJogo{
+	border: 3px solid black;
+	border-radius: 10px;
+	text-align: center;
+	margin: 30px;
+	padding: 10px;
+}
+
+a.caixaJogo{
+	text-decoration: none;
+}
+
+.nomeJogo{
+	margin: 5px;
+	font-size: 2em;
+	color: #212529;
 }
