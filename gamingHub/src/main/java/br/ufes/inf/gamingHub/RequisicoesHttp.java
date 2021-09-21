@@ -28,7 +28,6 @@ public class RequisicoesHttp {
 			System.exit(1);
 		}
 		
-		System.out.println(respostaHttp);
 		return respostaHttp;
 	}
 }
