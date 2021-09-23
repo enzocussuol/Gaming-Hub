@@ -1,38 +1,29 @@
 package br.ufes.inf.gamingHub;
 
-import java.util.LinkedList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.ufes.inf.gamingHub.catalogo.Catalogo;
 import br.ufes.inf.gamingHub.catalogo.Jogo;
+import obtencaoJogos.Applist;
 
 @SpringBootApplication
 public class GamingHubApplication {
+	private static void obtemIdsJogos() {
+		Applist appList = new Applist();
+		appList = appList.deserializa("https://api.steampowered.com/ISteamApps/GetAppList/v2/");
+		appList.apps.geraArquivoJogos();
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(GamingHubApplication.class, args);
 		
-		LinkedList<Jogo> jogos = GamingHubController.catalogo.getJogos();
+		GamingHubApplication.obtemIdsJogos();
 		
-		Jogo jogo = new Jogo();
-				
-		jogo = jogo.deserializa("https://store.steampowered.com/api/appdetails?appids=220&lang=pt-br");
-		jogos.add(jogo);
-		
-		jogo = jogo.deserializa("https://store.steampowered.com/api/appdetails?appids=730&lang=pt-br");
-		jogos.add(jogo);
-		
-		jogo = jogo.deserializa("https://store.steampowered.com/api/appdetails?appids=578080&lang=pt-br");
-		jogos.add(jogo);
-		
-		jogo = jogo.deserializa("https://store.steampowered.com/api/appdetails?appids=1172470&lang=pt-br");
-		jogos.add(jogo);
-		
-		jogo = jogo.deserializa("https://store.steampowered.com/api/appdetails?appids=1085660&lang=pt-br");
-		jogos.add(jogo);
-		
-		jogo = jogo.deserializa("https://store.steampowered.com/api/appdetails?appids=271590&lang=pt-br");
-		jogos.add(jogo);
+		Catalogo catalogo = new Catalogo();
 	}
 }

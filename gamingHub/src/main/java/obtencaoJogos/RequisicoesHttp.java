@@ -1,4 +1,4 @@
-package br.ufes.inf.gamingHub;
+package obtencaoJogos;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,7 +15,8 @@ public class RequisicoesHttp {
 			CloseableHttpClient clienteHttp = HttpClients.createDefault();
 			HttpGet getHttp = new HttpGet(url);
 			
-			System.out.println("Fazendo download...");
+			System.out.print("Fazendo download na url: ");
+			System.out.println(url);
 			
 			CloseableHttpResponse resposta = clienteHttp.execute(getHttp);
 			HttpEntity entidade = resposta.getEntity();
