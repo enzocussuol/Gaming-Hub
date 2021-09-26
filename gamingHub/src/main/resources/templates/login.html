@@ -17,7 +17,7 @@
     <div th:replace="~{cabecalho :: cabecalho}"></div>
     
 	<div class="caixaRegistro">
-		<form class="form-horizontal" action='' method="POST">
+		<form class="form-horizontal" th:action="@{/login}" th:object="${usuario}" method="POST">
 		  <fieldset>
 		    <div id="legend">
 		      <legend class="">Entre no Gaming Hub!</legend>
@@ -26,7 +26,7 @@
 		      <!-- Username -->
 		      <label class="control-label"  for="username">Nome de usuário</label>
 		      <div class="controls">
-		        <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+		        <input th:field="*{nome}" type="text" id="username" name="username" placeholder="" class="input-xlarge">
 		        <p class="help-block">Insira o nome de usuário cadastrado</p>
 		      </div>
 		    </div>
@@ -35,7 +35,7 @@
 		      <!-- Password-->
 		      <label class="control-label" for="password">Senha</label>
 		      <div class="controls">
-		        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+		        <input th:field="*{senha}" type="password" id="password" name="password" placeholder="" class="input-xlarge">
 		        <p class="help-block">Insira a senha cadastrada</p>
 		      </div>
 		    </div>
