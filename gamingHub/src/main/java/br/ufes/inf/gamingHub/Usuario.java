@@ -1,14 +1,10 @@
 package br.ufes.inf.gamingHub;
 
-import java.util.LinkedList;
-
-import br.ufes.inf.gamingHub.catalogo.Jogo;
-
 public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
-	private LinkedList<Jogo> jogosFavoritos = new LinkedList<Jogo>();
+	private String confirmacaoSenha;
 	
 	public String getNome() {
 		return nome;
@@ -27,5 +23,22 @@ public class Usuario {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
+	}
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
+	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		
+		str += nome + "\n";
+		str += email + "\n";
+		str += senha + "\n";
+		
+		return str;
 	}
 }

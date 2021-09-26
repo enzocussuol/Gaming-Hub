@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Dados {
+public class DadosJogo {
 	@SerializedName("type")
 	public String tipo;
 	@SerializedName("name")

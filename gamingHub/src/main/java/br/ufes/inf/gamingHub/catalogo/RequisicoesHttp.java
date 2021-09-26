@@ -1,4 +1,4 @@
-package obtencaoJogos;
+package br.ufes.inf.gamingHub.catalogo;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
