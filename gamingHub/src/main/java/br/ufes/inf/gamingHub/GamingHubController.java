@@ -2,6 +2,7 @@ package br.ufes.inf.gamingHub;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
@@ -12,21 +13,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.ufes.inf.gamingHub.catalogo.Catalogo;
+import br.ufes.inf.gamingHub.catalogo.Jogo;
 
 @Controller
 public class GamingHubController{
 	public static Catalogo catalogo = new Catalogo();
 	
 	@GetMapping("/GamingHub")
-	public String getIndex(Model model) {
-		model.addAttribute("jogos", catalogo.getJogos().values());
+	public String getIndex(@RequestParam(defaultValue="0") int numPagina, Model model) {
+		if(numPagina < 0) numPagina = 0;
+		else if(numPagina > 16) numPagina = 16;
+		
+		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
+		
+		model.addAttribute("jogos", jogos);
+		model.addAttribute("numPagina", numPagina);
 		
 		return "index";
-	}
-	
-	@GetMapping("/jogo")
-	public String getJogo(@RequestParam String nome) {
-		return "jogo";
 	}
 	
 	@GetMapping("/registro")
@@ -69,5 +72,14 @@ public class GamingHubController{
 		}
 		
 		System.out.println("Um erro aconteceu ao logar...");
+	}
+	
+	@GetMapping("/jogo")
+	public String getJogo(Model model, @RequestParam String id) {		
+		Jogo jogo = catalogo.getJogos().get(id);
+
+		model.addAttribute("jogo", jogo);
+		
+		return "jogo";
 	}
 }

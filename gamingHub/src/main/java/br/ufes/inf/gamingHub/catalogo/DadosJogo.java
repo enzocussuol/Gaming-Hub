@@ -25,6 +25,14 @@ public class DadosJogo {
 	public String website;
 	@SerializedName("developers")
 	public ArrayList<String> desenvolvedores;
+	@SerializedName("metacritic")
+	public Metacritica metacritica;
+	@SerializedName("genres")
+	public ArrayList<Genero> genero = new ArrayList<Genero>();
+	@SerializedName("screenshots")
+	public ArrayList<Imagens> imagens = new ArrayList<Imagens>();
+	@SerializedName("recommendations")
+	public Recomendacoes recomendacoes;
 	
 	@Override
 	public String toString() {

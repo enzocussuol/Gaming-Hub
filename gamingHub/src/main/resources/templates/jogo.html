@@ -5,35 +5,82 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/jogo.css" rel="stylesheet">
 	
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-    <title>Página de jogo</title>
+    <title>Página de Jogo</title>
   </head>
   <body>
-    <div class="text-center caixaCabecalho">
-    	<img src="/images/gamingHub.jpg" class="logo">
-    </div>
+    <div th:replace="~{cabecalho :: cabecalho}"></div>
     
     <div class="container">
 	  	<div class="row">
-		   	<div class="col-3 ">
-			    <h2>Entre ou cadastre-se agora mesmo para usufruir de todas as funcionalidades do Gaming Hub!</h2>
-			    <div class="container">
-					<div class="row">
-						<button type="button" class="btn btn-outline-secondary">Entrar</button>
-						<button type="button" class="btn btn-outline-secondary">Cadastrar</button>
-					</div>
-			    </div>
-		   	</div>
-		   	<div class="col">
-		   		<p>Conteudo do jogo...</p>
+		   	<div th:replace="~{boasVindas :: boasVindas}"></div>
+		   	<div class="col caixaPrincipalJogo">
+			   	<div class="container">
+			   		<div class="row">
+			   			<div class="col-4 caixaEsquerda">
+			   				<div class="caixaImagemPrincipalJogo">
+			   					<img class="img-fluid" th:src="${jogo.dados.imagem}">
+			   				</div>
+			   				<div class="caixaAvaliacao">
+			   					<h2 class="tituloAvaliacao">Metacrítica: </h2>
+			   					<div th:if="${jogo.dados.metacritica != null}">
+				   					<h3 class="textoAvaliacao" th:text="'Nota: ' + ${jogo.dados.metacritica.pontuacao}"></h3>
+			   						<a class="textoAvaliacao link-secondary" th:href="${jogo.dados.metacritica?.link}">Ver avaliação completa</a>
+			   					</div>
+			   					<div th:unless="${jogo.dados.metacritica != null}">
+			   						<h3 class="erroMetacritica">Não existe uma avaliação do site <a href="https://www.metacritic.com/" class="link-secondary">metacritic</a> para esse jogo :(</h3>
+			   					</div>
+			   					<h2 class="tituloAvaliacao" th:text="'Recomendações: ' + ${jogo.dados.recomendacoes.total}"></h2>
+			   				</div>
+			   				<div class="caixaFotos">
+			   					<h3 class="fotos">Fotos</h3>
+			   					<div class="caixaFoto" th:each="i: ${#numbers.sequence(0, 3)}">
+			   						<a th:href="${jogo.dados.imagens.get(i).imgCompleta}"><img class="img-fluid" th:src="${jogo.dados.imagens.get(i).thumbnail}"></a>
+			   					</div>
+			   				</div>
+						</div>
+						<div class="col caixaDireita">
+							<div class="caixaInformacaoJogo">
+								<h1 class="titulo" th:text="${jogo.dados.nome}"></h1>
+							</div>
+							<div class="caixaInformacaoJogo">
+								<h2 class="desenvolvedores" th:text="'Desenvolvedores: ' + ${jogo.dados.desenvolvedores.get(0)}"></h2>
+							</div>
+							<div class="caixaInformacaoJogo">
+								<h3 class="descricao" th:text="${jogo.dados.descricaoCurta}"></h3>
+							</div>
+							<div class="caixaSiteGenero">
+								<div class="col caixaSite">
+									<a class="link-secondary linkSite" th:href="${jogo.dados.website}">Visite o site oficial!</a>
+								</div>
+								<div class="col caixaGenero">
+									<h3 class="genero" th:text="'Gênero: ' + ${jogo.dados.genero.get(0).descricao}"></h3>
+								</div>
+							</div>
+							<div class="caixaInformacaoJogo">
+								<form>
+									<div class="form-group">
+									   <label class="adicionarComentario" for="exampleFormControlTextarea1">Adicionar um novo comentário</label>
+									   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="caixaComentarios">
+								<h3>Comentários</h3>
+								<div></div>
+							</div>
+						</div>
+			   		</div>
+			   	</div>
 		   	</div>
 	  	</div>
 	</div>
-
+	
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -23,19 +23,38 @@
 				  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Pesquise pelo nome de um jogo...">
 				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
 				  <ul class="dropdown-menu dropdown-menu-end">
-				    <li><a class="dropdown-item" href="#">Mais jogados</a></li>
-				    <li><a class="dropdown-item" href="#">Em alta</a></li>
-				    <li><a class="dropdown-item" href="#">Lançamentos populares</a></li>
+				    <li><a class="dropdown-item" href="#">Número de recomendações</a></li>
+				    <li><a class="dropdown-item" href="#">Ordem alfabética (A-Z)</a></li>
+				    <li><a class="dropdown-item" href="#">Ordem alfabética (Z-A)</a></li>
 				  </ul>
 				</div>
 				<div class="container">
 				  <div class="row d-flex justify-content-center caixaJogos">
-			    	<a th:href="'http://localhost:8080/jogo?nome=' + ${jogo.dados.nome}" th:each="jogo: ${jogos}" class="col-3 caixaJogo">
-				      	<img th:src="${jogo.dados.imagem}" class="img-fluid">
-		      			<h1 th:text="${jogo.dados.nome}" class="nomeJogo"></h1>
+			    	<a th:each="i: ${#numbers.sequence(0, 8)}" th:href="@{/jogo?id=} + ${jogos.get((numPagina*9) + i).dados.id}" class="col-3 caixaJogo">
+				      	<img th:src="${jogos.get((numPagina*9) + i).dados.imagem}" class="img-fluid">
+		      			<h1 th:text="${jogos.get((numPagina*9) + i).dados.nome}" class="nomeJogo"></h1>
 			    	</a>
 				  </div>
 				</div>
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				    <li class="page-item">
+				      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?numPagina=} + ${numPagina - 1}">
+				        <span aria-hidden="true">&laquo;</span>
+				        <span class="sr-only"></span>
+				      </a>
+				    </li>
+				    <li class="page-item active"><a class="page-link" th:text="${numPagina}" href="#"></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}"></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 2}"></a></li>
+				    <li class="page-item">
+				      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}">
+				        <span aria-hidden="true">&raquo;</span>
+				        <span class="sr-only"></span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
 		   	</div>
 	  	</div>
 	</div>
