@@ -1,0 +1,87 @@
+.caixaPrincipalJogo{
+	padding-top: 55px;
+	border-left: 1px solid black;
+	padding-bottom: 30px;
+}
+
+.caixaImagemPrincipalJogo{
+	border: 2px solid black;
+	margin-bottom: 10px;
+}
+
+.caixaAvaliacao{
+	border: 2px solid black;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.tituloAvaliacao{
+	font-size: 1.5em;
+}
+
+.textoAvaliacao{
+	font-size: 1.15em;
+}
+
+.caixaFotos{
+	border: 2px solid black;
+	text-align: center;
+	padding: 5px;
+}
+
+.fotos{
+	font-size: 1.5em;
+	margin-top: 5px;
+}
+
+.caixaFoto{
+	margin: 5px;
+	border: 2px solid black;
+}
+
+.erroMetacritica{
+	font-size: 1.25em;
+}
+
+.caixaInformacaoJogo{
+	border: 2px solid black;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.caixaSiteGenero, .caixaTwitterYoutube{
+	display: flex;
+	flex-direction: row;
+}
+
+.caixaSite, .caixaGenero, .caixaTwitter, .caixaYoutube{
+	border: 2px solid black;
+	padding: 5px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.caixaSite, .caixaTwitter{
+	margin-right: 2.5px;
+}
+
+.caixaGenero, .caixaYoutube{
+	margin-left: 2.5px;
+}
+
+.caixaComentarios{
+	text-align: center;
+	border: 2px solid black;
+}
+
+.titulo{
+	font-size: 2em;
+}
+
+.desenvolvedores{
+	font-size: 1.5em;
+}
+
+.descricao, .linkSite, .adicionarComentario, .twitter, .youtube{
+	font-size: 1.25em;
+}

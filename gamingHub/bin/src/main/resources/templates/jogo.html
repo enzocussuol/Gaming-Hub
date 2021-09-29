@@ -1,0 +1,105 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/jogo.css" rel="stylesheet">
+	
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Página de Jogo</title>
+  </head>
+  <body class="corpo">
+    <div th:replace="~{cabecalho :: cabecalho}"></div>
+    
+    <div class="container">
+	  	<div class="row">
+		   	<div th:replace="~{boasVindas :: boasVindas}"></div>
+		   	<div class="col caixaPrincipalJogo">
+			   	<div class="container">
+			   		<div class="row">
+			   			<div class="col-4 caixaEsquerda">
+			   				<div class="caixaImagemPrincipalJogo">
+			   					<img class="img-fluid" th:src="${jogo.dados.imagem}">
+			   				</div>
+			   				<div class="caixaAvaliacao">
+			   					<h2 class="tituloAvaliacao">Metacrítica: </h2>
+			   					<div th:if="${jogo.dados.metacritica != null}">
+				   					<h3 class="textoAvaliacao" th:text="'Nota: ' + ${jogo.dados.metacritica.pontuacao}"></h3>
+			   						<a class="textoAvaliacao link-secondary" th:href="${jogo.dados.metacritica?.link}">Ver avaliação completa</a>
+			   					</div>
+			   					<div th:unless="${jogo.dados.metacritica != null}">
+			   						<h3 class="erroMetacritica">Não foi possivel linkar diretamente, procure no site <a href="https://www.metacritic.com/" class="link-secondary">metacritic</a>.</h3>
+			   					</div>
+			   					<h2 class="tituloAvaliacao" th:text="'Recomendações: ' + ${jogo.dados.recomendacoes.total}"></h2>
+			   				</div>
+			   				<div class="caixaFotos">
+			   					<h3 class="fotos">Fotos</h3>
+			   					<div class="caixaFoto" th:each="i: ${#numbers.sequence(0, 3)}">
+			   						<a th:href="${jogo.dados.imagens.get(i).imgCompleta}"><img class="img-fluid" th:src="${jogo.dados.imagens.get(i).thumbnail}"></a>
+			   					</div>
+			   				</div>
+						</div>
+						<div class="col caixaDireita">
+							<div class="caixaInformacaoJogo">
+								<h1 class="titulo" th:text="${jogo.dados.nome}"></h1>
+							</div>
+							<div class="caixaInformacaoJogo">
+								<h2 class="desenvolvedores" th:text="'Desenvolvedores: ' + ${jogo.dados.desenvolvedores.get(0)}"></h2>
+							</div>
+							<div class="caixaInformacaoJogo">
+								<h3 class="descricao" th:text="${jogo.dados.descricaoCurta}"></h3>
+							</div>
+							<div class="caixaSiteGenero">
+								<div class="col caixaSite">
+									<a class="link-secondary linkSite" th:href="${jogo.dados.website}" target="_blank">Visite o site oficial!</a>
+								</div>
+								<div class="col caixaGenero">
+									<h3 class="genero" th:text="'Gênero: ' + ${jogo.dados.genero.get(0).descricao}"></h3>
+								</div>
+							</div>
+							<div class="caixaTwitterYoutube">
+								<div class="col caixaTwitter">
+									<img src="../static/images/twitter-logo.png" alt="twitter logo" width=50 height=50>
+									<a class="link-secondary  twitter" th:href="'twitter.com/search?q=' + ${jogo.dados.nome}" target="_blank">Pesquisas no twitter</a>
+								</div>
+								<div class="col caixaYoutube">
+									<img src="../static/images/youtube-logo.png" alt="youtube logo" width=50 height=50>
+									<a class="link-secondary  youtube" th:href="'https//youtube.com/results?search_query=' + ${jogo.dados.nome}"  target="_blank">Pesquisas no Youtube</a>
+								</div>
+							</div>
+							<div class="caixaInformacaoJogo">
+								<form>
+									<div class="form-group">
+									   <label class="adicionarComentario" for="exampleFormControlTextarea1">Adicionar um novo comentário</label>
+									   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="caixaComentarios">
+								<h3>Comentários</h3>
+								<div></div>
+							</div>
+						</div>
+			   		</div>
+			   	</div>
+		   	</div>
+	  	</div>
+	</div>
+	
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

@@ -1,0 +1,59 @@
+.corpo{
+	background-color: whitesmoke;
+}
+
+.caixaCabecalho{
+	width: 100%;
+	background-color: black;
+}
+
+.logo{
+	max-width: 5.5%;
+}
+
+.caixaLogin{
+	padding-top: 50px;
+}
+
+.caixaBotoesLogin{
+	margin-top: 40px;
+	padding: 10px;
+}
+
+.botaoEntrar{
+	margin-bottom: 10px;
+}
+
+.caixaPrincipal{
+	border-left: 1px solid black;
+}
+
+.caixaPesquisa{
+	padding-top: 55px;
+	max-width: 90%;
+	margin-left: 50%;
+	transform: translate(-50%, 0);
+}
+
+.caixaJogos{
+	padding-top: 20px;
+}
+
+.caixaJogo{
+	background-color: #E5E5E5;
+	border: 2px solid black;
+	border-radius: 5px;
+	text-align: center;
+	margin: 35px;
+	padding: 15px;
+}
+
+a.caixaJogo{
+	text-decoration: none;
+}
+
+.nomeJogo{
+	margin: 5px;
+	font-size: 1.3em;
+	color: #212529;
+}

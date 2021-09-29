@@ -1,0 +1,74 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/registro.css" rel="stylesheet">
+	
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Entre no Gaming Hub</title>
+  </head>
+  <body class="corpo">
+    <div th:replace="~{cabecalho :: cabecalho}"></div>
+    
+	<div class="caixaRegistro">
+		<div th:if="${param.error}">
+			Nome de usuário ou senha inválidos!
+		</div>
+		<div th:if="${param.logout}">
+			Você está desconectado(a)!
+		</div>
+	
+		<form class="form-horizontal" th:action="@{/login}" th:object="${usuario}" method="POST">
+		  <fieldset>
+		    <div id="legend">
+		      <legend class="">Entre no Gaming Hub!</legend>
+		    </div>
+		    <div class="control-group">
+		      <!-- Username -->
+		      <label class="control-label"  for="username">Nome de usuário</label>
+		      <div class="controls">
+		        <input th:field="*{nome}" type="text" id="username" name="username" placeholder="" class="input-xlarge">
+		        <p class="help-block">Insira o nome de usuário cadastrado</p>
+		      </div>
+		    </div>
+		 
+		    <div class="control-group">
+		      <!-- Password-->
+		      <label class="control-label" for="password">Senha</label>
+		      <div class="controls">
+		        <input th:field="*{senha}" type="password" id="password" name="password" placeholder="" class="input-xlarge">
+		        <p class="help-block">Insira a senha cadastrada</p>
+		      </div>
+		    </div>
+		 
+		    <div class="control-group">
+		      <!-- Button -->
+		      <div class="controls">
+		        <button class="btn btn-success">Entrar</button>
+		      </div>
+		    </div>
+		  </fieldset>
+		</form>
+	</div>
+	<div class="caixaSugestaoLogin">
+		<h2>Ainda não possui uma conta? <a class="link-secondary" th:href="@{/registro}">Registre-se</a> agora mesmo!</h2>
+	</div>
+	
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

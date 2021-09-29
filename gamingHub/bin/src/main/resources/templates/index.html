@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="/css/index.css" rel="stylesheet">
+	
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Gaming Hub</title>
+  </head>
+  <body class="corpo">
+    <div th:replace="~{cabecalho :: cabecalho}"></div>
+    
+    <div class="container">
+	  	<div class="row">
+		   	<div th:replace="~{boasVindas :: boasVindas}"></div>
+		   	<div class="col caixaPrincipal">
+				<div class="input-group mb-3 caixaPesquisa">
+				  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Pesquise pelo nome de um jogo...">
+				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
+				  <ul class="dropdown-menu dropdown-menu-end">
+				    <li><a class="dropdown-item" href="#">Número de recomendações</a></li>
+				    <li><a class="dropdown-item" href="#">Ordem alfabética (A-Z)</a></li>
+				    <li><a class="dropdown-item" href="#">Ordem alfabética (Z-A)</a></li>
+				  </ul>
+				</div>
+				<div class="container">
+				  <div class="row d-flex justify-content-center caixaJogos">
+			    	<a th:each="i: ${#numbers.sequence(0, 0)}" th:href="@{/jogo?id=} + ${jogos.get((numPagina*9) + i).dados.id}" class="col-3 caixaJogo">
+				      	<img th:src="${jogos.get((numPagina*9) + i).dados.imagem}" class="img-fluid">
+		      			<h1 th:text="${jogos.get((numPagina*9) + i).dados.nome}" class="nomeJogo"></h1>
+			    	</a>
+				  </div>
+				</div>
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				    <li class="page-item">
+				      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?numPagina=} + ${numPagina - 1}">
+				        <span aria-hidden="true">&laquo;</span>
+				        <span class="sr-only"></span>
+				      </a>
+				    </li>
+				    <li class="page-item active"><a class="page-link" th:text="${numPagina}" href="#"></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}"></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 2}"></a></li>
+				    <li class="page-item">
+				      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}">
+				        <span aria-hidden="true">&raquo;</span>
+				        <span class="sr-only"></span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+		   	</div>
+	  	</div>
+	</div>
+	
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
