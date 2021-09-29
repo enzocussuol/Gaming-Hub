@@ -30,10 +30,10 @@
 			   					<h2 class="tituloAvaliacao">Metacrítica: </h2>
 			   					<div th:if="${jogo.dados.metacritica != null}">
 				   					<h3 class="textoAvaliacao" th:text="'Nota: ' + ${jogo.dados.metacritica.pontuacao}"></h3>
-			   						<a class="textoAvaliacao link-secondary" th:href="${jogo.dados.metacritica?.link}">Ver avaliação completa</a>
+			   						<a class="textoAvaliacao link-secondary" th:href="${jogo.dados.metacritica?.link}" target="_blank">Ver avaliação completa</a>
 			   					</div>
 			   					<div th:unless="${jogo.dados.metacritica != null}">
-			   						<h3 class="erroMetacritica">Não foi possivel linkar diretamente, procure no site <a href="https://www.metacritic.com/" class="link-secondary">metacritic</a>.</h3>
+			   						<h3 class="erroMetacritica">Não foi possivel linkar diretamente, procure no site <a th:href="'https://www.metacritic.com/search/all/'+${jogo.dados.nome}+'/results'" class="link-secondary" target="_blank">metacritic</a>.</h3>
 			   					</div>
 			   					<h2 class="tituloAvaliacao" th:text="'Recomendações: ' + ${jogo.dados.recomendacoes.total}"></h2>
 			   				</div>
@@ -54,7 +54,7 @@
 							<div class="caixaInformacaoJogo">
 								<h3 class="descricao" th:text="${jogo.dados.descricaoCurta}"></h3>
 							</div>
-							<div class="caixaSiteGenero">
+							<div class="caixaDupla">
 								<div class="col caixaSite">
 									<a class="link-secondary linkSite" th:href="${jogo.dados.website}" target="_blank">Visite o site oficial!</a>
 								</div>
@@ -62,15 +62,25 @@
 									<h3 class="genero" th:text="'Gênero: ' + ${jogo.dados.genero.get(0).descricao}"></h3>
 								</div>
 							</div>
-							<div class="caixaTwitterYoutube">
-								<div class="col caixaTwitter">
-									<img src="/images/twitter-logo.png" alt="twitter logo" width=50 height=50>
-									<a class="link-secondary  twitter" th:href="'https://twitter.com/search?q=' + ${jogo.dados.nome}" target="_blank">Pesquisas no twitter</a>
-								</div>
-								<div class="col caixaYoutube">
-									<img src="/images/youtube-logo.png" alt="youtube logo" width=50 height=50>
-									<a class="link-secondary  youtube" th:href="'https://youtube.com/results?search_query=' + ${jogo.dados.nome}" target="_blank">Pesquisas no Youtube</a>
-								</div>
+							<div class="caixaDupla">
+								<a class="col caixaTwitter link-secondary align-self-center"  th:href="'https://twitter.com/search?q=' + ${jogo.dados.nome}" target="_blank">
+									<img src="https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-4.png" alt="twitter logo" width=50 height=50>
+									<h2 class="twitter"> Pesquisas no twitter</h2>
+								</a>
+								<a class="link-secondary col caixaYoutube align-self-center" th:href="'https://youtube.com/results?search_query=' + ${jogo.dados.nome}" target="_blank">
+									<img src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-5-2.png" alt="youtube logo" width=50 height=50>
+									<h2 class="youtube"> Pesquisas no Youtube</h2>
+								</a>
+							</div>
+							<div class="caixaDupla">
+								<a class="col caixaSteam link-secondary align-self-center" th:href="'https://store.steampowered.com/app/' + ${jogo.dados.id}" target="_blank">
+									<img src="https://w7.pngwing.com/pngs/1014/595/png-transparent-steam-computer-icons-logo-video-game-valves-steam-logo-symbol-valve.png" alt="steam logo" width=50 height=50>
+									<h2 class="steam"> Página na Steam</h2>
+								</a>
+								<a class="col caixaSteamDB link-secondary" th:href="'https://steamdb.info/app/' + ${jogo.dados.id}" target="_blank">
+									<img src="https://i.pinimg.com/originals/7c/26/6a/7c266ae10367c719d1e49fd1bd04f60c.png" alt="steamdb logo" width=50 height=50>
+									<h2 class="steamdb" > Página no SteamDB</h2>
+								</a>
 							</div>
 							<div class="caixaInformacaoJogo">
 								<form>

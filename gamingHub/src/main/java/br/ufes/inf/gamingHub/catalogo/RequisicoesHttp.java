@@ -14,7 +14,7 @@ public class RequisicoesHttp {
 		try {
 			CloseableHttpClient clienteHttp = HttpClients.createDefault();
 			HttpGet getHttp = new HttpGet(url);
-			
+
 			System.out.print("Fazendo download na url: ");
 			System.out.println(url);
 			

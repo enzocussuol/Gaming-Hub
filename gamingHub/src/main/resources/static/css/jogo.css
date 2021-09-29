@@ -49,25 +49,39 @@
 	margin-bottom: 5px;
 }
 
-.caixaSiteGenero, .caixaTwitterYoutube{
+.caixaDupla{
 	display: flex;
 	flex-direction: row;
 }
 
-.caixaSite, .caixaGenero, .caixaTwitter, .caixaYoutube{
+.caixaSite, .caixaGenero, .caixaTwitter, .caixaYoutube, .caixaSteam, .caixaSteamDB{
 	border: 2px solid black;
 	padding: 5px;
 	margin-bottom: 5px;
 	text-align: center;
 }
 
-.caixaSite, .caixaTwitter{
+.caixaSite, .caixaTwitter, .caixaSteam{
 	margin-right: 2.5px;
 }
-
-.caixaGenero, .caixaYoutube{
+.caixaGenero, .caixaYoutube, .caixaSteamDB{
 	margin-left: 2.5px;
 }
+
+.caixaTwitter, .caixaSteam, .caixaYoutube, .caixaSteamDB{
+	display: flex;
+	vertical-align: center;
+}
+ .twitter, .youtube, .steam, .steamdb{
+ 	margin-left: 10px;
+ 	padding-top: 10px;
+ }
+
+.logoInfo{
+	padding-top: 5px;
+}
+
+
 
 .caixaComentarios{
 	text-align: center;
@@ -82,6 +96,6 @@
 	font-size: 1.5em;
 }
 
-.descricao, .linkSite, .adicionarComentario, .twitter, .youtube{
+.descricao, .linkSite, .adicionarComentario, .twitter, .youtube, .steam, .steamdb{
 	font-size: 1.25em;
 }
