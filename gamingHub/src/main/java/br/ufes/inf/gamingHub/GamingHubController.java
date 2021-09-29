@@ -22,12 +22,22 @@ public class GamingHubController{
 	
 	@GetMapping("/GamingHub")
 	public String getIndex(@RequestParam(defaultValue="0") int numPagina, Model model) {
-		if(numPagina < 0) numPagina = 0;
-		else if(numPagina > 6) numPagina = 6;
-		
 		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
+		int tamJogos = jogos.size();
 		
-		model.addAttribute("jogos", jogos);
+		if(numPagina < 0) numPagina = 0;
+		int maxPagina = tamJogos/9;
+		
+		if(numPagina > maxPagina) numPagina = maxPagina;
+		
+		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();
+		for(int i = 0; i < 9; i++) {
+			if(i + 9*numPagina < tamJogos) {
+				jogosatuais.add(jogos.get(i+9*numPagina));		
+			}else break;
+		}
+		
+		model.addAttribute("jogos", jogosatuais);
 		model.addAttribute("numPagina", numPagina);
 		
 		return "index";

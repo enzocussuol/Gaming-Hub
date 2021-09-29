@@ -19,8 +19,12 @@ public class Jogo {
 	
 	public Jogo deserializa(String url) {
 		Gson gson = new Gson();
+		String aux = RequisicoesHttp.get(url);
+		if(aux.length() < 50) {
+			return null;
+		}
 		
-		return gson.fromJson(Jogo.consertaString(RequisicoesHttp.get(url)), Jogo.class);
+		return gson.fromJson(Jogo.consertaString(aux), Jogo.class);
 	}
 	
 	public LinkedList<String> getComentarios(){

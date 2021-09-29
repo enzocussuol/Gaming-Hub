@@ -30,9 +30,9 @@
 				</div>
 				<div class="container">
 				  <div class="row d-flex justify-content-center caixaJogos">
-			    	<a th:each="i: ${#numbers.sequence(0, 0)}" th:href="@{/jogo?id=} + ${jogos.get((numPagina*9) + i).dados.id}" class="col-3 caixaJogo">
-				      	<img th:src="${jogos.get((numPagina*9) + i).dados.imagem}" class="img-fluid">
-		      			<h1 th:text="${jogos.get((numPagina*9) + i).dados.nome}" class="nomeJogo"></h1>
+			    	<a th:each="i: ${#numbers.sequence(0, jogos.size()-1)}" th:href="@{/jogo?id=} + ${jogos.get(i).dados.id}" class="col-3 caixaJogo">
+				      	<img th:src="${jogos.get(i).dados.imagem}" class="img-fluid">
+		      			<h1 th:text="${jogos.get(i).dados.nome}" class="nomeJogo"></h1>
 			    	</a>
 				  </div>
 				</div>
