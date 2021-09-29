@@ -23,7 +23,7 @@ public class GamingHubController{
 	@GetMapping("/GamingHub")
 	public String getIndex(@RequestParam(defaultValue="0") int numPagina, Model model) {
 		if(numPagina < 0) numPagina = 0;
-		else if(numPagina > 16) numPagina = 16;
+		else if(numPagina > 6) numPagina = 6;
 		
 		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
 		

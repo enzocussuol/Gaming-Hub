@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
-			.loginPage("/login")
+			//.loginPage("/login") 
 			.permitAll()
 			.and()
 		.logout()
@@ -32,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Bean
 	@Override
 	public UserDetailsService userDetailsService() {
+		@SuppressWarnings("deprecation")
 		UserDetails user =
 			 User.withDefaultPasswordEncoder()
 				.username("user")

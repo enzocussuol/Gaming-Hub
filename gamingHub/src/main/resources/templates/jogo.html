@@ -33,7 +33,7 @@
 			   						<a class="textoAvaliacao link-secondary" th:href="${jogo.dados.metacritica?.link}">Ver avaliação completa</a>
 			   					</div>
 			   					<div th:unless="${jogo.dados.metacritica != null}">
-			   						<h3 class="erroMetacritica">Não existe uma avaliação do site <a href="https://www.metacritic.com/" class="link-secondary">metacritic</a> para esse jogo :(</h3>
+			   						<h3 class="erroMetacritica">Não foi possivel linkar diretamente, procure no site <a href="https://www.metacritic.com/" class="link-secondary">metacritic</a>.</h3>
 			   					</div>
 			   					<h2 class="tituloAvaliacao" th:text="'Recomendações: ' + ${jogo.dados.recomendacoes.total}"></h2>
 			   				</div>
@@ -56,10 +56,20 @@
 							</div>
 							<div class="caixaSiteGenero">
 								<div class="col caixaSite">
-									<a class="link-secondary linkSite" th:href="${jogo.dados.website}">Visite o site oficial!</a>
+									<a class="link-secondary linkSite" th:href="${jogo.dados.website}" target="_blank">Visite o site oficial!</a>
 								</div>
 								<div class="col caixaGenero">
 									<h3 class="genero" th:text="'Gênero: ' + ${jogo.dados.genero.get(0).descricao}"></h3>
+								</div>
+							</div>
+							<div class="caixaTwitterYoutube">
+								<div class="col caixaTwitter">
+									<img src="../static/images/twitter-logo.png" alt="twitter logo" width=50 height=50>
+									<a class="link-secondary  twitter" th:href="'twitter.com/search?q=' + ${jogo.dados.nome}" target="_blank">Pesquisas no twitter</a>
+								</div>
+								<div class="col caixaYoutube">
+									<img src="../static/images/youtube-logo.png" alt="youtube logo" width=50 height=50>
+									<a class="link-secondary  youtube" th:href="'https//youtube.com/results?search_query=' + ${jogo.dados.nome}"  target="_blank">Pesquisas no Youtube</a>
 								</div>
 							</div>
 							<div class="caixaInformacaoJogo">

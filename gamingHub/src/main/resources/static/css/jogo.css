@@ -49,23 +49,23 @@
 	margin-bottom: 5px;
 }
 
-.caixaSiteGenero{
+.caixaSiteGenero, .caixaTwitterYoutube{
 	display: flex;
 	flex-direction: row;
 }
 
-.caixaSite, .caixaGenero{
+.caixaSite, .caixaGenero, .caixaTwitter, .caixaYoutube{
 	border: 2px solid black;
 	padding: 5px;
 	margin-bottom: 5px;
 	text-align: center;
 }
 
-.caixaSite{
+.caixaSite, .caixaTwitter{
 	margin-right: 2.5px;
 }
 
-.caixaGenero{
+.caixaGenero, .caixaYoutube{
 	margin-left: 2.5px;
 }
 
@@ -82,6 +82,6 @@
 	font-size: 1.5em;
 }
 
-.descricao, .linkSite, .adicionarComentario{
+.descricao, .linkSite, .adicionarComentario, .twitter, .youtube{
 	font-size: 1.25em;
 }
