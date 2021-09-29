@@ -17,6 +17,13 @@
     <div th:replace="~{cabecalho :: cabecalho}"></div>
     
 	<div class="caixaRegistro">
+		<div th:if="${param.error}">
+			Nome de usuário ou senha inválidos!
+		</div>
+		<div th:if="${param.logout}">
+			Você está desconectado(a)!
+		</div>
+	
 		<form class="form-horizontal" th:action="@{/login}" th:object="${usuario}" method="POST">
 		  <fieldset>
 		    <div id="legend">

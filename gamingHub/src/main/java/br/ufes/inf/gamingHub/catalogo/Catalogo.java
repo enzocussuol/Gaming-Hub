@@ -22,11 +22,11 @@ public class Catalogo {
 			
 			String url = "https://store.steampowered.com/api/appdetails?lang=pt-br&appids=";
 			
-			for(int i = 0; i < 18; i++) {
+			for(int i = 0; i < 1; i++) {
 				id = leitor.nextLine();
 				jogos.put(id, jogo.deserializa(url + id));
 				
-				Thread.sleep(1000);
+				Thread.sleep(1);
 			}
 			
 			leitor.close();
