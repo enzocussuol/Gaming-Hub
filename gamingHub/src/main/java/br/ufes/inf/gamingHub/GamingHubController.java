@@ -3,7 +3,10 @@ package br.ufes.inf.gamingHub;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +24,18 @@ public class GamingHubController{
 	public static Catalogo catalogo = new Catalogo();
 	
 	@GetMapping("/GamingHub")
-	public String getIndex(@RequestParam(defaultValue="0") int numPagina, Model model) {
+	public String getIndex(@RequestParam(defaultValue="0") int numPagina, Model model ,@RequestParam(defaultValue="0") int ordena, @RequestParam(defaultValue = "") String nome) {
 		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
 		int tamJogos = jogos.size();
+		
+		if(ordena==1) {
+			Collections.sort(jogos, new ComparaJogoAZ());
+		}else if(ordena==2) {
+			Collections.sort(jogos, new ComparaJogoZA());			
+		}else {
+			Collections.sort(jogos, new ComparaJogoRec());	
+		}
+		
 		
 		if(numPagina < 0) numPagina = 0;
 		int maxPagina = tamJogos/9;
@@ -31,17 +43,26 @@ public class GamingHubController{
 		if(numPagina > maxPagina) numPagina = maxPagina;
 		
 		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();
-		for(int i = 0; i < 9; i++) {
-			if(i + 9*numPagina < tamJogos) {
-				jogosatuais.add(jogos.get(i+9*numPagina));		
+		for(int i = 0, j = 0; i < 9; i++) {
+			if(j + 9*numPagina < tamJogos) {
+				
+				if(jogos.get(i+9*numPagina).dados.nome.contains(nome)) {
+					jogosatuais.add(jogos.get(i+9*numPagina));		
+					j++;
+				}
+				
 			}else break;
 		}
 		
+		
 		model.addAttribute("jogos", jogosatuais);
 		model.addAttribute("numPagina", numPagina);
+		model.addAttribute("ordena", ordena);
+		model.addAttribute("nome", nome);
 		
 		return "index";
 	}
+		
 	
 	@GetMapping("/registro")
 	public String getRegistro(Model model) {
@@ -92,5 +113,26 @@ public class GamingHubController{
 		model.addAttribute("jogo", jogo);
 		
 		return "jogo";
+	}
+}
+
+class ComparaJogoAZ implements Comparator<Jogo>{
+	@Override
+	public int compare(Jogo j1, Jogo j2) {
+		return j1.dados.nome.compareToIgnoreCase(j2.dados.nome);		
+	}
+}
+
+class ComparaJogoZA implements Comparator<Jogo>{
+	@Override
+	public int compare(Jogo j1, Jogo j2) {
+		return j2.dados.nome.compareToIgnoreCase(j1.dados.nome);		
+	}
+}
+
+class ComparaJogoRec implements Comparator<Jogo>{
+	@Override
+	public int compare(Jogo j1, Jogo j2) {
+		return j2.dados.recomendacoes.total - j1.dados.recomendacoes.total;
 	}
 }

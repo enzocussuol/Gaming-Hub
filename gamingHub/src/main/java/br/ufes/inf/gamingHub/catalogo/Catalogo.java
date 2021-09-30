@@ -30,9 +30,7 @@ public class Catalogo {
 				if(novojogo != null) {
 					jogos.put(id, novojogo);					
 					System.out.println(novojogo.toString());
-				}
-				
-				
+				}				
 				
 				Thread.sleep(1);
 			}

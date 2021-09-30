@@ -33,6 +33,9 @@ public class DadosJogo {
 	public ArrayList<Imagens> imagens = new ArrayList<Imagens>();
 	@SerializedName("recommendations")
 	public Recomendacoes recomendacoes;
+	@SerializedName("price_overview")
+	public Preco preco;
+	
 	
 	@Override
 	public String toString() {
