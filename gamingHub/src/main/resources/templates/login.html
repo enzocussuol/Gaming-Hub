@@ -17,7 +17,7 @@
     <div th:replace="~{cabecalho :: cabecalho}"></div>
     
 	<div class="caixaRegistro">
-		<div th:if="${param.error}">
+		<div th:if="${usuarioLogado != null}">
 			Nome de usuário ou senha inválidos!
 		</div>
 		<div th:if="${param.logout}">

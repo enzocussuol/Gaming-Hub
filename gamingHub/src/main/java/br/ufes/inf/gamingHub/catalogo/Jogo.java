@@ -1,5 +1,7 @@
 package br.ufes.inf.gamingHub.catalogo;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 import com.google.gson.Gson;
@@ -34,5 +36,9 @@ public class Jogo {
 	@Override
 	public String toString() {
 		return dados.toString();
+	}
+	
+	public int compareTo(Jogo jogo) {
+		return this.dados.nome.compareToIgnoreCase(jogo.dados.nome);
 	}
 }

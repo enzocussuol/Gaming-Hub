@@ -15,18 +15,24 @@
 	margin-bottom: 10px;
 }
 
-.tituloAvaliacao{
+.tituloAvaliacao, .textoAvaliacao{
 	font-size: 1.5em;
 }
 
-.textoAvaliacao{
-	font-size: 1.15em;
+.textoAvaliacaoCompleta{
+	font-size: 1.25em;
 }
 
 .caixaFotos{
 	border: 2px solid black;
 	text-align: center;
 	padding: 5px;
+}
+
+.preco{
+	border: 2px solid black;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
 .fotos{

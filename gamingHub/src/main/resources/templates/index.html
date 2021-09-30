@@ -21,11 +21,13 @@
 		   	<div class="col caixaPrincipal">
 				<div class="input-group mb-3 caixaPesquisa">
 				  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Pesquise pelo nome de um jogo...">
+				  <button type="submit" class="btn  btn-outline-secondary"><i class="fas fa-search"></i></button>
+				  
 				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
 				  <ul class="dropdown-menu dropdown-menu-end">
-				    <li><a class="dropdown-item" href="#">Número de recomendações</a></li>
-				    <li><a class="dropdown-item" href="#">Ordem alfabética (A-Z)</a></li>
-				    <li><a class="dropdown-item" href="#">Ordem alfabética (Z-A)</a></li>
+				    <li><a class="dropdown-item" th:href="@{/GamingHub?ordena=1}">Ordem alfabética (A-Z)</a></li>
+				    <li><a class="dropdown-item" th:href="@{/GamingHub?ordena=2}">Ordem alfabética (Z-A)</a></li>
+				    <li><a class="dropdown-item" th:href="@{/GamingHub?ordena=3}">Número de recomendações</a></li>
 				  </ul>
 				</div>
 				<div class="container">
@@ -39,16 +41,16 @@
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">
 				    <li class="page-item">
-				      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?numPagina=} + ${numPagina - 1}">
+				      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?numPagina=} + ${numPagina - 1}  + '&ordena=' + ${ordena}">
 				        <span aria-hidden="true">&laquo;</span>
 				        <span class="sr-only"></span>
 				      </a>
 				    </li>
 				    <li class="page-item active"><a class="page-link" th:text="${numPagina}" href="#"></a></li>
-				    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}"></a></li>
-				    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 2}"></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1} + '&ordena=' + ${ordena}" ></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 2}  + '&ordena=' + ${ordena}"></a></li>
 				    <li class="page-item">
-				      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}">
+				      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}  + '&ordena=' + ${ordena}">
 				        <span aria-hidden="true">&raquo;</span>
 				        <span class="sr-only"></span>
 				      </a>
@@ -58,6 +60,8 @@
 		   	</div>
 	  	</div>
 	</div>
+	
+	<script src="https://kit.fontawesome.com/5cdaf0dc04.js" crossorigin="anonymous"></script>
 	
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -5,15 +5,17 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private String confirmacaoSenha;
+	private String idUnico;
 	
 	public Usuario() {
 		
 	}
 	
-	public Usuario(String nome, String email, String senha) {
+	public Usuario(String nome, String email, String senha, String idUnico) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.idUnico = idUnico;
 	}
 	
 	public String getNome() {
@@ -40,14 +42,20 @@ public class Usuario {
 	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		this.confirmacaoSenha = confirmacaoSenha;
 	}
+
+	public String getIdUnico() {
+		return idUnico;
+	}
+
+	public void setIdUnico(String idUnico) {
+		this.idUnico = idUnico;
+	}
 	
 	@Override
 	public String toString() {
 		String str = "";
 		
-		str += nome + "\n";
-		str += email + "\n";
-		str += senha + "\n";
+		str += "\n" + nome + ", " + senha + ", " + email + ", " + idUnico;
 		
 		return str;
 	}

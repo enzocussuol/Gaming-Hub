@@ -26,11 +26,24 @@
 			   				<div class="caixaImagemPrincipalJogo">
 			   					<img class="img-fluid" th:src="${jogo.dados.imagem}">
 			   				</div>
-			   				<div class="caixaAvaliacao">
-			   					<h2 class="tituloAvaliacao">Metacrítica: </h2>
+			   				<div class="preco">
+			   					<div th:if="${jogo.dados.gratuito == true}">	
+			   						<h2>Preço: Gratuíto</h2>
+			   					</div>
+			   					<div th:unless="${jogo.dados.gratuito == true}">
+			   						<div th:if="${jogo.dados.preco != null}">
+				   						<h3 th:text="'Preço: ' + ${jogo.dados.preco.precofinal}"></h3>
+			   						</div>
+			   						<div th:unless="${jogo.dados.preco != null}">
+			   							<h5>Não foi possivel identificar o preço do jogo</h5>
+			   						</div>
+			   					</div>
+			   				</div>
+			   				
+			   				<div class="caixaAvaliacao">			   	
 			   					<div th:if="${jogo.dados.metacritica != null}">
-				   					<h3 class="textoAvaliacao" th:text="'Nota: ' + ${jogo.dados.metacritica.pontuacao}"></h3>
-			   						<a class="textoAvaliacao link-secondary" th:href="${jogo.dados.metacritica?.link}" target="_blank">Ver avaliação completa</a>
+				   					<h2 class="textoAvaliacao" th:text="'Nota Metacritic: ' + ${jogo.dados.metacritica.pontuacao}"></h2>
+			   						<a class="textoAvaliacaoCompleta link-secondary" th:href="${jogo.dados.metacritica?.link}" target="_blank">Ver avaliação completa</a>
 			   					</div>
 			   					<div th:unless="${jogo.dados.metacritica != null}">
 			   						<h3 class="erroMetacritica">Não foi possivel linkar diretamente, procure no site <a th:href="'https://www.metacritic.com/search/all/'+${jogo.dados.nome}+'/results'" class="link-secondary" target="_blank">metacritic</a>.</h3>
