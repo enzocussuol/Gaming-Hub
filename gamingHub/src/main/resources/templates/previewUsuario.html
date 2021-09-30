@@ -1,0 +1,14 @@
+<div class="col-3" th:fragment="previewUsuario">
+    <div class="caixaUsuario">
+    	<div class="caixaImagemUsuario">
+    		<img th:src="${usuario.getImgPerfil()}" class="img-fluid">
+    	</div>
+    	<div class="caixaInformacoesUsuario">
+			<h2 class="nomeUsuario" th:text="${usuario.getNome()}"></h2>
+			<div class="caixaUsuarioConfig">
+				<h3 class="emailUsuario" th:text="${usuario.getEmail()}"></h3>
+				<button onclick="location.href=window.location.origin + '/GamingHub';" type="button" class="btn"><i class="fas fa-cog engrenagem"></i></button>
+			</div>
+    	</div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+.caixaUsuario{
+	padding-top: 40px;
+}
+
+.caixaImagemUsuario, .caixaInformacoesUsuario{
+	border: 2px solid black;
+	margin-left: 50%;
+	transform: translate(-50%, 0);
+}
+
+.caixaImagemUsuario{
+	width: 70%;
+	margin-bottom: 20px;
+}
+
+.caixaInformacoesUsuario{
+	width: 90%;
+	padding: 10px;
+	overflow-wrap: break-word;
+}
+
+.caixaUsuarioConfig{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nomeUsuario{
+	font-size: 1.5em;
+}
+
+.emailUsuario{
+	font-size: 1em;
+}
+
+.engrenagem{
+	font-size: 2em;
+}

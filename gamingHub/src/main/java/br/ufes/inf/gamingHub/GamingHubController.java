@@ -29,9 +29,15 @@ public class GamingHubController{
 	public static HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
 	
 	@GetMapping("/GamingHub")
-	public String getIndex(@RequestParam(defaultValue="0") int numPagina, Model model ,@RequestParam(defaultValue="0") int ordena, @RequestParam(defaultValue = "") String nome) {
+	public String getIndex(@RequestParam(defaultValue="0") int numPagina, 
+			@RequestParam(defaultValue="0") int ordena, 
+			@RequestParam(defaultValue="") String nome, 
+			@RequestParam(defaultValue="") String idUnico,
+			Model model) {
 		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
+		
 		int tamJogos = jogos.size();
+		int maxPagina = tamJogos/9;
 		
 		if(ordena==1) {
 			Collections.sort(jogos, new ComparaJogoAZ());
@@ -42,8 +48,6 @@ public class GamingHubController{
 		}
 		
 		if(numPagina < 0) numPagina = 0;
-		int maxPagina = tamJogos/9;
-		
 		if(numPagina > maxPagina) numPagina = maxPagina;
 		
 		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();
@@ -58,10 +62,16 @@ public class GamingHubController{
 			}else break;
 		}
 		
+		Usuario usuario = null;
+		if(!idUnico.equals("")) {
+			usuario = usuarios.get(idUnico);
+		}
+		
 		model.addAttribute("jogos", jogosatuais);
 		model.addAttribute("numPagina", numPagina);
 		model.addAttribute("ordena", ordena);
 		model.addAttribute("nome", nome);
+		model.addAttribute("usuario", usuario);
 		
 		return "index";
 	}
@@ -84,7 +94,7 @@ public class GamingHubController{
 			escritor.close();
 			System.out.println("registros.csv atualizado!");
 		} catch (IOException e) {
-			System.out.println("Nao foi possivel escrever em registros.txt");
+			System.out.println("Nao foi possivel escrever em registros.csv");
 		}
 	}
 	
@@ -112,6 +122,9 @@ public class GamingHubController{
 						idUnico = campos[3];
 						
 						usuarios.put(idUnico, new Usuario(nome, email, senha, idUnico));
+						
+						System.out.print("Usuario ativo adicionado! id = ");
+						System.out.println(idUnico);
 						break;
 					}
 				}

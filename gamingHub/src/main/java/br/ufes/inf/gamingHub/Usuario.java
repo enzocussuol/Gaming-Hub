@@ -6,6 +6,7 @@ public class Usuario {
 	private String senha;
 	private String confirmacaoSenha;
 	private String idUnico;
+	private String imgPerfil;
 	
 	public Usuario() {
 		
@@ -16,6 +17,7 @@ public class Usuario {
 		this.email = email;
 		this.senha = senha;
 		this.idUnico = idUnico;
+		this.setImgPerfil("https://i.pinimg.com/474x/61/f4/71/61f4719ddfeeda214b6d8da3e321ec39.jpg");
 	}
 	
 	public String getNome() {
@@ -50,12 +52,20 @@ public class Usuario {
 	public void setIdUnico(String idUnico) {
 		this.idUnico = idUnico;
 	}
+
+	public String getImgPerfil() {
+		return imgPerfil;
+	}
+
+	public void setImgPerfil(String imgperfil) {
+		this.imgPerfil = imgperfil;
+	}
 	
 	@Override
 	public String toString() {
 		String str = "";
 		
-		str += "\n" + nome + ", " + senha + ", " + email + ", " + idUnico;
+		str += "\n" + nome + "," + senha + "," + email + "," + idUnico;
 		
 		return str;
 	}
