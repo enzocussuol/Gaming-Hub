@@ -21,17 +21,20 @@
 	  		<th:block th:if="${usuario == null}"><div th:replace="~{boasVindas :: boasVindas}"></div></th:block>
 		   	<th:block th:unless="${usuario == null}"><div th:replace="~{previewUsuario :: previewUsuario}"></div></th:block>
 		   	<div class="col caixaPrincipal">
-				<div class="input-group mb-3 caixaPesquisa">
-				  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Pesquise pelo nome de um jogo...">
-				  <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+				
+					<form class="form input-group mb-3 caixaPesquisa" th:action="@{/GamingHub}" th:object="${busca}" method="POST">
+				  		<input type="text" th:field="*{nomebusca}" class="form-control" id="nomebusca" name="nomebusca" aria-label="Text input with dropdown button" placeholder="Pesquise pelo nome de um jogo...">
+				  		<button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>					
+					
+						  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
+						  <ul class="dropdown-menu dropdown-menu-end">
+						    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Ordem alfabética (A-Z)</a></li>
+						    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Ordem alfabética (Z-A)</a></li>
+						    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Número de recomendações</a></li>
+						  </ul>
+					
+					</form>
 				  
-				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
-				  <ul class="dropdown-menu dropdown-menu-end">
-				    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Ordem alfabética (A-Z)</a></li>
-				    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Ordem alfabética (Z-A)</a></li>
-				    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Número de recomendações</a></li>
-				  </ul>
-				</div>
 				<div class="container">
 				  <div class="row d-flex justify-content-center caixaJogos">
 			    	<a th:each="i: ${#numbers.sequence(0, jogos.size()-1)}" th:href="@{/jogo?idUnico=} + ${idUnico} + '&id=' + ${jogos.get(i).dados.id}" class="col-3 caixaJogo">

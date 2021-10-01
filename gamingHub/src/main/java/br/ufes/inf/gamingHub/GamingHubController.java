@@ -31,7 +31,7 @@ public class GamingHubController{
 	@GetMapping("/GamingHub")
 	public String getIndex(@RequestParam(defaultValue="0") int numPagina, 
 			@RequestParam(defaultValue="0") int ordena, 
-			@RequestParam(defaultValue="") String nome, 
+			@RequestParam(defaultValue="") Busca busca, 
 			@RequestParam(defaultValue="") String idUnico,
 			Model model) {
 		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
@@ -51,16 +51,17 @@ public class GamingHubController{
 		if(numPagina > maxPagina) numPagina = maxPagina;
 		
 		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();
-		for(int i = 0, j = 0; i < 9; i++) {
-			if(j + 9*numPagina < tamJogos) {
+		for(int i = 0, j = 0; i < tamJogos; i++) {
+			if(j < 9) {
 				
-				if(jogos.get(i+9*numPagina).dados.nome.contains(nome)) {
+				if(jogos.get(i+9*numPagina).dados.nome.contains(busca.getNomebusca())) {
 					jogosatuais.add(jogos.get(i+9*numPagina));		
 					j++;
 				}
 				
 			}else break;
 		}
+		//Tratar caso não haja nenhum jogo!		
 		
 		Usuario usuario = null;
 		if(!idUnico.equals("")) {
@@ -70,13 +71,31 @@ public class GamingHubController{
 		model.addAttribute("jogos", jogosatuais);
 		model.addAttribute("numPagina", numPagina);
 		model.addAttribute("ordena", ordena);
-		model.addAttribute("nome", nome);
+		model.addAttribute("busca", busca);
 		model.addAttribute("idUnico", idUnico);
 		model.addAttribute("usuario", usuario);
 		
 		return "index";
 	}
+	
+	@PostMapping("/GamingHub")
+	public String buscaTitulo(@ModelAttribute Busca busca,
+							@RequestParam(defaultValue="0") int numPagina, 
+							@RequestParam(defaultValue="0") int ordena, 
+							@RequestParam(defaultValue="") String idUnico,
+							Model model) {
 		
+		model.addAttribute("numPagina", numPagina);
+		model.addAttribute("ordena", ordena);
+		model.addAttribute("busca", busca);
+		model.addAttribute("idUnico", idUnico);
+		
+		System.out.println(busca.getNomebusca());
+		
+		return this.getIndex(numPagina, ordena, busca, idUnico, model);
+	}
+	
+	
 	@GetMapping("/registro")
 	public String getRegistro(Model model) {
 		model.addAttribute("usuario", new Usuario());
@@ -136,7 +155,8 @@ public class GamingHubController{
 			System.out.println("Nao foi possivel ler do arquivo registros.csv");
 			System.exit(0);
 		}
-		return this.getIndex(0,0,"",idUnico,model);
+		Busca busca = new Busca("");
+		return this.getIndex(0,0,busca,idUnico,model);
 	}
 	
 	@GetMapping("/jogo")
@@ -151,6 +171,12 @@ public class GamingHubController{
 		model.addAttribute("jogo", jogo);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("idUnico", idUnico);
+		
+		return "jogo";
+	}
+	@PostMapping("/jogo")
+	public String postaComentario() {
+		
 		
 		return "jogo";
 	}
