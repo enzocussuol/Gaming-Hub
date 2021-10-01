@@ -87,6 +87,10 @@
 	padding-top: 5px;
 }
 
+.comentario{
+	margin-bottom: 10px;
+}
+
 .comentarioUsuarioDeslogado{
 	text-align: center;
 }
@@ -94,6 +98,35 @@
 .caixaComentarios{
 	text-align: center;
 	border: 2px solid black;
+}
+
+.caixaComentario{
+	border: 2px solid black;
+	padding: 10px;
+	margin: 10px;
+}
+
+.caixaCabecalhoComentario{
+	width: 10%;
+	display: flex;
+	align-items: middle;
+	margin-left: 10px;
+}
+
+.caixaInformacoesComentario{
+	margin-left: 10px;
+	margin-top: 10px;
+	text-align: start;
+}
+
+.nomeUsuarioComentario{
+	margin-left: 10px;
+	margin-top: 5px;
+	font-size: 2.25em;
+}
+
+.descricaoComentario{
+	font-size: 1.25em;
 }
 
 .titulo{

@@ -102,16 +102,24 @@
 									<h4>Faça <a class="link-secondary" th:href="@{/login}">login</a> para comentar nesse jogo!</h4>
 								</div>
 		   						<div th:unless="${usuario == null}">
-		   							<form class="form-group" th:action="@{/jogo}" method="POST">
+		   							<form class="form-group" th:action="@{/jogo?id=} + ${jogo.dados.id} + '&idUnico=' + ${idUnico}" th:object="${comentario}" method="POST">
 										   <label class="adicionarComentario" for="exampleFormControlTextarea1">Adicionar um novo comentário</label>
-										   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-										   <button class="btn btn-outline-secondary" type="submit" >Confirmar</button>
+										   <textarea th:field="*{descricao}" class="form-control comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+										   <button class="btn btn-outline-secondary" type="submit">Confirmar</button>
 									</form>
 		   						</div>
 							</div>
 							<div class="caixaComentarios">
 								<h3>Comentários</h3>
-								<div></div>
+								<div class="caixaComentario" th:each="comentario: ${jogo.getComentarios()}">
+									<div class="caixaCabecalhoComentario">
+										<img class="img-fluid" th:src="${comentario.getImagemAutorComentario()}">
+										<h2 class="nomeUsuarioComentario" th:text="${comentario.getNomeAutorComentario}"></h2>
+									</div>
+									<div class="caixaInformacoesComentario">
+										<h3 class="descricaoComentario" th:text="${comentario.getDescricao()}"></h3>
+									</div>
+								</div>
 							</div>
 						</div>
 			   		</div>

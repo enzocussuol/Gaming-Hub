@@ -1,7 +1,5 @@
 package br.ufes.inf.gamingHub.catalogo;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedList;
 
 import com.google.gson.Gson;
@@ -10,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class Jogo {
 	@SerializedName("data")
 	public DadosJogo dados;
-	private LinkedList<String> comentarios = new LinkedList<String>();
+	private LinkedList<Comentario> comentarios = new LinkedList<Comentario>();
 	
 	private static String consertaString(String str) {
 		str = str.substring(1, str.length() - 1);
@@ -29,7 +27,7 @@ public class Jogo {
 		return gson.fromJson(Jogo.consertaString(aux), Jogo.class);
 	}
 	
-	public LinkedList<String> getComentarios(){
+	public LinkedList<Comentario> getComentarios(){
 		return comentarios;
 	}
 	

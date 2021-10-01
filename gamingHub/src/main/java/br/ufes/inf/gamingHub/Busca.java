@@ -6,6 +6,7 @@ public class Busca {
 	public Busca() {
 		
 	}
+	
 	public Busca(String nomebusca) {
 		this.setNomebusca(nomebusca);
 	}

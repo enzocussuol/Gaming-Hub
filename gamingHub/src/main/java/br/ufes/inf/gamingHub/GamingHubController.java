@@ -21,6 +21,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
 import br.ufes.inf.gamingHub.catalogo.Catalogo;
+import br.ufes.inf.gamingHub.catalogo.Comentario;
 import br.ufes.inf.gamingHub.catalogo.Jogo;
 
 @Controller
@@ -61,7 +62,7 @@ public class GamingHubController{
 				
 			}else break;
 		}
-		//Tratar caso não haja nenhum jogo!		
+		//Tratar caso não haja nenhum jogo!
 		
 		Usuario usuario = null;
 		if(!idUnico.equals("")) {
@@ -155,6 +156,7 @@ public class GamingHubController{
 			System.out.println("Nao foi possivel ler do arquivo registros.csv");
 			System.exit(0);
 		}
+		
 		Busca busca = new Busca("");
 		return this.getIndex(0,0,busca,idUnico,model);
 	}
@@ -170,15 +172,32 @@ public class GamingHubController{
 
 		model.addAttribute("jogo", jogo);
 		model.addAttribute("usuario", usuario);
+		model.addAttribute("comentario", new Comentario());
 		model.addAttribute("idUnico", idUnico);
 		
 		return "jogo";
 	}
+	
 	@PostMapping("/jogo")
-	public String postaComentario() {
+	public String postaComentario(@ModelAttribute Comentario comentario, Model model, @RequestParam String id, @RequestParam(defaultValue="") String idUnico) {
+		try {
+			FileWriter escritor = new FileWriter("arquivosDados/comentarios.csv", true);
+			
+			Usuario usuario = usuarios.get(idUnico);
+			
+			comentario.setImagemAutorComentario(usuario.getImgPerfil());
+			comentario.setNomeAutorComentario(usuario.getNome());
+			
+			catalogo.getJogos().get(id).getComentarios().add(comentario);
+						
+			escritor.write("\n" + id + "," + comentario.getImagemAutorComentario() + "," + comentario.getNomeAutorComentario() + "," + comentario.getDescricao());
+			escritor.close();
+			System.out.println("comentarios.csv atualizado!");
+		} catch (IOException e) {
+			System.out.println("Nao foi possivel escrever em comentarios.csv");
+		}
 		
-		
-		return "jogo";
+		return this.getJogo(model, id, idUnico);
 	}
 	
 	@GetMapping("/usuario")
