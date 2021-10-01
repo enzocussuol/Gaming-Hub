@@ -72,6 +72,7 @@ public class GamingHubController{
 		model.addAttribute("ordena", ordena);
 		model.addAttribute("nome", nome);
 		model.addAttribute("usuario", usuario);
+		model.addAttribute("idUnico", idUnico);
 		
 		return "index";
 	}
@@ -105,12 +106,12 @@ public class GamingHubController{
 	}
 	
 	@PostMapping("/login")
-	public void handleLogin(@ModelAttribute Usuario usuario) throws CsvValidationException, IOException {
+	public String handleLogin(@ModelAttribute Usuario usuario, Model model) throws CsvValidationException, IOException {
+		String nome, senha, email, idUnico = "";
+		
 		try {
 			CSVReader leitor = new CSVReader(new FileReader("arquivosDados/registros.csv"));
 			String[] campos;
-			
-			String nome, senha, email, idUnico;
 			
 			leitor.readNext();
 			while((campos = leitor.readNext()) != null) {
@@ -135,6 +136,7 @@ public class GamingHubController{
 			System.out.println("Nao foi possivel ler do arquivo registros.csv");
 			System.exit(0);
 		}
+		return this.getIndex(0,0,"",idUnico,model);
 	}
 	
 	@GetMapping("/jogo")
