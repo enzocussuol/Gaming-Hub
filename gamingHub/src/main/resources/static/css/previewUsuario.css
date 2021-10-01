@@ -33,10 +33,10 @@
 	font-size: 1em;
 }
 
-.engrenagem{
-	font-size: 1.75em;
+.logOut{
+	font-size: 1.5em;	
 }
 
-.engrenagem:hover{
-	color: black;
+.logOut:hover{
+	color: #a40000;
 }

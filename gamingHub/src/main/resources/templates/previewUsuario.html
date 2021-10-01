@@ -7,7 +7,7 @@
 			<h2 class="nomeUsuario" th:text="${usuario.getNome()}"></h2>
 			<div class="caixaUsuarioConfig">
 				<h3 class="emailUsuario" th:text="${usuario.getEmail()}"></h3>
-				<a th:href="@{/usuario?idUnico=} + ${idUnico}" class="btn"><i class="fas fa-cog engrenagem"></i></a>
+				<a th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&logout=true'" class="btn"><i class="fas fa-sign-out-alt logOut"></i></a>
 			</div>
     	</div>
     </div>

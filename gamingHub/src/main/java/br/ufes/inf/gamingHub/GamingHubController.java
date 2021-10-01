@@ -34,7 +34,10 @@ public class GamingHubController{
 			@RequestParam(defaultValue="0") int ordena, 
 			@RequestParam(defaultValue="") Busca busca, 
 			@RequestParam(defaultValue="") String idUnico,
+			@RequestParam(defaultValue="false") boolean logout,
 			Model model) {
+		if(logout) usuarios.remove(idUnico);
+		
 		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
 		
 		int tamJogos = jogos.size();
@@ -62,6 +65,7 @@ public class GamingHubController{
 				
 			}else break;
 		}
+		
 		//Tratar caso não haja nenhum jogo!
 		
 		Usuario usuario = null;
@@ -93,7 +97,7 @@ public class GamingHubController{
 		
 		System.out.println(busca.getNomebusca());
 		
-		return this.getIndex(numPagina, ordena, busca, idUnico, model);
+		return this.getIndex(numPagina, ordena, busca, idUnico, false, model);
 	}
 	
 	
@@ -158,7 +162,7 @@ public class GamingHubController{
 		}
 		
 		Busca busca = new Busca("");
-		return this.getIndex(0,0,busca,idUnico,model);
+		return this.getIndex(0,0,busca,idUnico,false,model);
 	}
 	
 	@GetMapping("/jogo")

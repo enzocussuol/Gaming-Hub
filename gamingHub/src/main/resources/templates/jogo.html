@@ -30,7 +30,7 @@
 			   				</div>
 			   				<div class="preco">
 			   					<div th:if="${jogo.dados.gratuito == true}">	
-			   						<h2>Preço: Gratuíto</h2>
+			   						<h2>Preço: Gratuito</h2>
 			   					</div>
 			   					<div th:unless="${jogo.dados.gratuito == true}">
 			   						<div th:if="${jogo.dados.preco != null}">
@@ -113,7 +113,7 @@
 								<h3>Comentários</h3>
 								<div class="caixaComentario" th:each="comentario: ${jogo.getComentarios()}">
 									<div class="caixaCabecalhoComentario">
-										<img class="img-fluid" th:src="${comentario.getImagemAutorComentario()}">
+										<div class="caixaImagemAutor"><img class="img-fluid" th:src="${comentario.getImagemAutorComentario()}"></div>
 										<h2 class="nomeUsuarioComentario" th:text="${comentario.getNomeAutorComentario}"></h2>
 									</div>
 									<div class="caixaInformacoesComentario">

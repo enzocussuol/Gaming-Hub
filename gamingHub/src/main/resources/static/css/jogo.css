@@ -107,10 +107,14 @@
 }
 
 .caixaCabecalhoComentario{
-	width: 10%;
 	display: flex;
 	align-items: middle;
 	margin-left: 10px;
+}
+
+.caixaImagemAutor{
+	width: 15%;
+	border: 2px solid black;
 }
 
 .caixaInformacoesComentario{

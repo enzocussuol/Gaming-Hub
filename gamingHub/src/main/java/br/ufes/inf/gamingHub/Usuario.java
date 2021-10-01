@@ -17,7 +17,9 @@ public class Usuario {
 		this.email = email;
 		this.senha = senha;
 		this.idUnico = idUnico;
-		this.setImgPerfil("https://i.pinimg.com/474x/61/f4/71/61f4719ddfeeda214b6d8da3e321ec39.jpg");
+		this.imgPerfil = "https://robohash.org/" + email;
+		
+		System.out.println(this.imgPerfil);
 	}
 	
 	public String getNome() {
