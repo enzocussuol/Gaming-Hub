@@ -23,18 +23,18 @@
 		   	<div class="col caixaPrincipal">
 				<div class="input-group mb-3 caixaPesquisa">
 				  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Pesquise pelo nome de um jogo...">
-				  <button type="submit" class="btn  btn-outline-secondary"><i class="fas fa-search"></i></button>
+				  <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
 				  
 				  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Ordenar</button>
 				  <ul class="dropdown-menu dropdown-menu-end">
-				    <li><a class="dropdown-item" th:href="@{/GamingHub?ordena=1}">Ordem alfabética (A-Z)</a></li>
-				    <li><a class="dropdown-item" th:href="@{/GamingHub?ordena=2}">Ordem alfabética (Z-A)</a></li>
-				    <li><a class="dropdown-item" th:href="@{/GamingHub?ordena=3}">Número de recomendações</a></li>
+				    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Ordem alfabética (A-Z)</a></li>
+				    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Ordem alfabética (Z-A)</a></li>
+				    <li><a class="dropdown-item" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&ordena=1'">Número de recomendações</a></li>
 				  </ul>
 				</div>
 				<div class="container">
 				  <div class="row d-flex justify-content-center caixaJogos">
-			    	<a th:each="i: ${#numbers.sequence(0, jogos.size()-1)}" th:href="@{/jogo?id=} + ${jogos.get(i).dados.id}" class="col-3 caixaJogo">
+			    	<a th:each="i: ${#numbers.sequence(0, jogos.size()-1)}" th:href="@{/jogo?idUnico=} + ${idUnico} + '&id=' + ${jogos.get(i).dados.id}" class="col-3 caixaJogo">
 				      	<img th:src="${jogos.get(i).dados.imagem}" class="img-fluid">
 		      			<h1 th:text="${jogos.get(i).dados.nome}" class="nomeJogo"></h1>
 			    	</a>
@@ -43,16 +43,16 @@
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">
 				    <li class="page-item">
-				      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?numPagina=} + ${numPagina - 1}  + '&ordena=' + ${ordena}">
+				      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina - 1}  + '&ordena=' + ${ordena}">
 				        <span aria-hidden="true">&laquo;</span>
 				        <span class="sr-only"></span>
 				      </a>
 				    </li>
 				    <li class="page-item active"><a class="page-link" th:text="${numPagina}" href="#"></a></li>
-				    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1} + '&ordena=' + ${ordena}" ></a></li>
-				    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?numPagina=} + ${numPagina + 2}  + '&ordena=' + ${ordena}"></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena}"></a></li>
+				    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 2}  + '&ordena=' + ${ordena}"></a></li>
 				    <li class="page-item">
-				      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?numPagina=} + ${numPagina + 1}  + '&ordena=' + ${ordena}">
+				      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena}">
 				        <span aria-hidden="true">&raquo;</span>
 				        <span class="sr-only"></span>
 				      </a>

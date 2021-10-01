@@ -15,7 +15,7 @@
 
 .caixaInformacoesUsuario{
 	width: 90%;
-	padding: 10px;
+	padding: 0px 10px;
 	overflow-wrap: break-word;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .nomeUsuario{
-	font-size: 1.5em;
+	font-size: 1.75em;
 }
 
 .emailUsuario{
@@ -34,5 +34,9 @@
 }
 
 .engrenagem{
-	font-size: 2em;
+	font-size: 1.75em;
+}
+
+.engrenagem:hover{
+	color: black;
 }

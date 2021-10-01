@@ -7,7 +7,7 @@
 			<h2 class="nomeUsuario" th:text="${usuario.getNome()}"></h2>
 			<div class="caixaUsuarioConfig">
 				<h3 class="emailUsuario" th:text="${usuario.getEmail()}"></h3>
-				<button onclick="location.href=window.location.origin + '/GamingHub';" type="button" class="btn"><i class="fas fa-cog engrenagem"></i></button>
+				<a th:href="@{/usuario?idUnico=} + ${idUnico}" class="btn"><i class="fas fa-cog engrenagem"></i></a>
 			</div>
     	</div>
     </div>

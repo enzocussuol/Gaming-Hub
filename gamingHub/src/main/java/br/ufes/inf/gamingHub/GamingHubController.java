@@ -71,8 +71,8 @@ public class GamingHubController{
 		model.addAttribute("numPagina", numPagina);
 		model.addAttribute("ordena", ordena);
 		model.addAttribute("nome", nome);
-		model.addAttribute("usuario", usuario);
 		model.addAttribute("idUnico", idUnico);
+		model.addAttribute("usuario", usuario);
 		
 		return "index";
 	}
@@ -140,12 +140,24 @@ public class GamingHubController{
 	}
 	
 	@GetMapping("/jogo")
-	public String getJogo(Model model, @RequestParam String id) {		
+	public String getJogo(Model model, @RequestParam String id, @RequestParam(defaultValue="") String idUnico) {		
 		Jogo jogo = catalogo.getJogos().get(id);
+		
+		Usuario usuario = null;
+		if(!idUnico.equals("")) {
+			usuario = usuarios.get(idUnico);
+		}
 
 		model.addAttribute("jogo", jogo);
+		model.addAttribute("usuario", usuario);
+		model.addAttribute("idUnico", idUnico);
 		
 		return "jogo";
+	}
+	
+	@GetMapping("/usuario")
+	public String getPaginaUsuario(Model model, @RequestParam String idUnico) {
+		return "usuario";
 	}
 }
 
