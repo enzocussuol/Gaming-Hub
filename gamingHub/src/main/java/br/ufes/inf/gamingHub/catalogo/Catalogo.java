@@ -10,8 +10,6 @@ import java.util.Scanner;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-import br.ufes.inf.gamingHub.Usuario;
-
 public class Catalogo {
 	public HashMap<String, Jogo> jogos = new HashMap<String, Jogo>();
 	
@@ -25,7 +23,7 @@ public class Catalogo {
 			
 			String url = "https://store.steampowered.com/api/appdetails?lang=pt-br&appids=";
 			
-			for(int i = 0; i < 2; i++) {
+			for(int i = 0; i < 20; i++) {
 				id = leitor.nextLine();
 				
 				Jogo novojogo = jogo.deserializa(url + id);

@@ -34,34 +34,41 @@
 						  </ul>
 					
 					</form>
-				  
-				<div class="container">
-				  <div class="row d-flex justify-content-center caixaJogos">
-			    	<a th:each="i: ${#numbers.sequence(0, jogos.size()-1)}" th:href="@{/jogo?idUnico=} + ${idUnico} + '&id=' + ${jogos.get(i).dados.id}" class="col-3 caixaJogo">
-				      	<img th:src="${jogos.get(i).dados.imagem}" class="img-fluid">
-		      			<h1 th:text="${jogos.get(i).dados.nome}" class="nomeJogo"></h1>
-			    	</a>
-				  </div>
+				<div th:if="${jogos.size()!=0}">
+					<div class="container">
+					  <div class="row d-flex justify-content-center caixaJogos">			  
+					    	<a th:each="i: ${#numbers.sequence(0, jogos.size()-1)}" th:href="@{/jogo?idUnico=} + ${idUnico} + '&id=' + ${jogos.get(i).dados.id}" class="col-3 caixaJogo">
+						      	<img th:src="${jogos.get(i).dados.imagem}" class="img-fluid">
+				      			<h1 th:text="${jogos.get(i).dados.nome}" class="nomeJogo"></h1>
+					    	</a>			    	
+				    		
+					  </div>
+					</div>
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination justify-content-center">
+					    <li class="page-item">
+					      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina - 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}">
+					        <span aria-hidden="true">&laquo;</span>
+					        <span class="sr-only"></span>
+					      </a>
+					    </li>
+					    <li class="page-item active"><a class="page-link" th:text="${numPagina}" href="#"></a></li>
+					    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}"></a></li>
+					    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 2}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}"></a></li>
+					    <li class="page-item">
+					      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}">
+					        <span aria-hidden="true">&raquo;</span>
+					        <span class="sr-only"></span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
 				</div>
-				<nav aria-label="Page navigation example">
-				  <ul class="pagination justify-content-center">
-				    <li class="page-item">
-				      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina - 1}  + '&ordena=' + ${ordena}">
-				        <span aria-hidden="true">&laquo;</span>
-				        <span class="sr-only"></span>
-				      </a>
-				    </li>
-				    <li class="page-item active"><a class="page-link" th:text="${numPagina}" href="#"></a></li>
-				    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena}"></a></li>
-				    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 2}  + '&ordena=' + ${ordena}"></a></li>
-				    <li class="page-item">
-				      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena}">
-				        <span aria-hidden="true">&raquo;</span>
-				        <span class="sr-only"></span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
+				<div th:unless="${jogos.size()!=0}" class="caixaErro">
+			    		<h1>Não foi possivel encontrar</h1>
+			    		<h1>jogos com a busca digitada!</h1>
+			    </div>
+				
 		   	</div>
 	  	</div>
 	</div>
