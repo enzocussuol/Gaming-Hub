@@ -32,59 +32,55 @@ public class GamingHubController{
 	@GetMapping("/GamingHub")
 	public String getIndex(@RequestParam(defaultValue="0") int numPagina, 
 			@RequestParam(defaultValue="0") int ordena, 
-			@RequestParam(defaultValue="") String buscastring, 
-			@RequestParam(defaultValue="") Busca busca,
+			@RequestParam(defaultValue="") Busca busca, 
 			@RequestParam(defaultValue="") String idUnico,
 			@RequestParam(defaultValue="false") boolean logout,
+			@RequestParam(defaultValue="false") boolean favorito,
 			Model model) {
 		if(logout) usuarios.remove(idUnico);
-		
-		if(buscastring != "") {
-			busca.setNomebusca(buscastring);
-		}
-		buscastring = busca.getNomebusca();
-		
-		ArrayList<Jogo> jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
-		int tamJogos = jogos.size();
-		
-		ArrayList<Jogo> jogosBusca = new ArrayList<Jogo>();
-		for(int i = 0; i < tamJogos; i++) {
-			if(jogos.get(i).dados.nome.contains(busca.getNomebusca())) {
-				jogosBusca.add(jogos.get(i));		
-			}
-		}
-		int tamJogosBusca = jogosBusca.size();
-		int maxPagina = tamJogosBusca/9;
-		
-		if(ordena==1) {
-			Collections.sort(jogosBusca, new ComparaJogoAZ());
-		}else if(ordena==2) {
-			Collections.sort(jogosBusca, new ComparaJogoZA());			
-		}else {
-			Collections.sort(jogosBusca, new ComparaJogoRec());	
-		}
-		
-		if(numPagina < 0) numPagina = 0;
-		if(numPagina > maxPagina) numPagina = maxPagina;
-
-		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();
-		for(int i = 9*numPagina, j = 0; i < jogosBusca.size(); i++, j++) {
-			if(j < 9) {
-				jogosatuais.add(jogosBusca.get(i));
-			}else break;
-		}
 		
 		Usuario usuario = null;
 		if(!idUnico.equals("")) {
 			usuario = usuarios.get(idUnico);
 		}
 		
+		ArrayList<Jogo> jogos;
+		
+		if(favorito == true) jogos = usuario.getJogosFavoritos();
+		else jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
+		
+		int tamJogos = jogos.size();
+		int maxPagina = tamJogos/9;
+		
+		if(ordena==1) {
+			Collections.sort(jogos, new ComparaJogoAZ());
+		}else if(ordena==2) {
+			Collections.sort(jogos, new ComparaJogoZA());			
+		}else {
+			Collections.sort(jogos, new ComparaJogoRec());	
+		}
+		
+		if(numPagina < 0) numPagina = 0;
+		if(numPagina > maxPagina) numPagina = maxPagina;
+		
+		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();
+		for(int i = 0, j = 0; i + 9*numPagina < tamJogos; i++) {
+			if(j < 9) {
+				
+				if(jogos.get(i+9*numPagina).dados.nome.contains(busca.getNomebusca())) {
+					jogosatuais.add(jogos.get(i+9*numPagina));		
+					j++;
+				}
+				
+			}else break;
+		}
+		
 		model.addAttribute("jogos", jogosatuais);
 		model.addAttribute("numPagina", numPagina);
 		model.addAttribute("ordena", ordena);
 		model.addAttribute("busca", busca);
-		model.addAttribute("buscastring", buscastring);
 		model.addAttribute("idUnico", idUnico);
+		model.addAttribute("favorito", favorito);
 		model.addAttribute("usuario", usuario);
 		
 		return "index";
@@ -96,10 +92,15 @@ public class GamingHubController{
 							@RequestParam(defaultValue="0") int ordena, 
 							@RequestParam(defaultValue="") String idUnico,
 							Model model) {
-				
-		System.out.println("Busca" + busca);
 		
-		return this.getIndex(numPagina, ordena, "", busca, idUnico, false, model);
+		model.addAttribute("numPagina", numPagina);
+		model.addAttribute("ordena", ordena);
+		model.addAttribute("busca", busca);
+		model.addAttribute("idUnico", idUnico);
+		
+		System.out.println(busca.getNomebusca());
+		
+		return this.getIndex(numPagina, ordena, busca, idUnico, false, false, model);
 	}
 	
 	
@@ -110,7 +111,7 @@ public class GamingHubController{
 	}
 	
 	@PostMapping("/registro")
-	public void handleRegistro(@ModelAttribute Usuario usuario) {
+	public String handleRegistro(@ModelAttribute Usuario usuario, Model model) {
 		try {
 			FileWriter escritor = new FileWriter("arquivosDados/registros.csv", true);
 			
@@ -123,6 +124,8 @@ public class GamingHubController{
 		} catch (IOException e) {
 			System.out.println("Nao foi possivel escrever em registros.csv");
 		}
+		
+		return this.getLogin(model);
 	}
 	
 	@GetMapping("/login")
@@ -164,28 +167,41 @@ public class GamingHubController{
 		}
 		
 		Busca busca = new Busca("");
-		return this.getIndex(0,0,"",busca,idUnico,false,model);
+		return this.getIndex(0,0,busca,idUnico,false,false,model);
 	}
 	
 	@GetMapping("/jogo")
-	public String getJogo(Model model, @RequestParam String id, @RequestParam(defaultValue="") String idUnico) {		
+	public String getJogo(Model model, @RequestParam String id, @RequestParam(defaultValue="") String idUnico, @RequestParam(defaultValue="0") int favorito) {
 		Jogo jogo = catalogo.getJogos().get(id);
 		
 		Usuario usuario = null;
 		if(!idUnico.equals("")) {
 			usuario = usuarios.get(idUnico);
+			if(usuario != null) {
+				if(favorito == 1) {
+					usuario.getJogosFavoritos().add(jogo);
+				}else if(favorito == -1){
+					usuario.getJogosFavoritos().remove(jogo);
+				}else {
+					if(usuario.getJogosFavoritos().contains(jogo)) favorito = 1;
+					else favorito = -1;
+				}
+			}
 		}
 
 		model.addAttribute("jogo", jogo);
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("comentario", new Comentario());
 		model.addAttribute("idUnico", idUnico);
+		model.addAttribute("favorito", favorito);
 		
 		return "jogo";
 	}
 	
 	@PostMapping("/jogo")
-	public String postaComentario(@ModelAttribute Comentario comentario, Model model, @RequestParam String id, @RequestParam(defaultValue="") String idUnico) {
+	public String postaComentario(@ModelAttribute Comentario comentario, Model model, 
+			@RequestParam String id, 
+			@RequestParam(defaultValue="") String idUnico) {
 		try {
 			FileWriter escritor = new FileWriter("arquivosDados/comentarios.csv", true);
 			
@@ -203,7 +219,7 @@ public class GamingHubController{
 			System.out.println("Nao foi possivel escrever em comentarios.csv");
 		}
 		
-		return this.getJogo(model, id, idUnico);
+		return this.getJogo(model, id, idUnico, 0);
 	}
 	
 	@GetMapping("/usuario")

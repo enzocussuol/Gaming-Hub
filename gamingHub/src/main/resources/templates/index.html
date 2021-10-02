@@ -47,16 +47,16 @@
 					<nav aria-label="Page navigation example">
 					  <ul class="pagination justify-content-center">
 					    <li class="page-item">
-					      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina - 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}">
+					      <a class="page-link" aria-label="Previous" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina - 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring} + '&favorito=' + ${favorito}">
 					        <span aria-hidden="true">&laquo;</span>
 					        <span class="sr-only"></span>
 					      </a>
 					    </li>
 					    <li class="page-item active"><a class="page-link" th:text="${numPagina}" href="#"></a></li>
-					    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}"></a></li>
-					    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 2}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}"></a></li>
+					    <li class="page-item"><a class="page-link" th:text="${numPagina + 1}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring} + '&favorito=' + ${favorito}"></a></li>
+					    <li class="page-item"><a class="page-link" th:text="${numPagina + 2}" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 2}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring} + '&favorito=' + ${favorito}"></a></li>
 					    <li class="page-item">
-					      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring}">
+					      <a class="page-link" aria-label="Next" th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&numPagina=' + ${numPagina + 1}  + '&ordena=' + ${ordena} + '&buscastring=' + ${buscastring} + '&favorito=' + ${favorito}">
 					        <span aria-hidden="true">&raquo;</span>
 					        <span class="sr-only"></span>
 					      </a>
@@ -65,8 +65,8 @@
 					</nav>
 				</div>
 				<div th:unless="${jogos.size()!=0}" class="caixaErro">
-			    		<h1>Não foi possivel encontrar</h1>
-			    		<h1>jogos com a busca digitada!</h1>
+			    		<h1>Não foi possível encontrar</h1>
+			    		<h1>jogos com os parâmetros fornecidos!</h1>
 			    </div>
 				
 		   	</div>

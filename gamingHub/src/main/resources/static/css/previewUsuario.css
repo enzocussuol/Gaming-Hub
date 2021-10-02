@@ -17,6 +17,7 @@
 	width: 90%;
 	padding: 0px 10px;
 	overflow-wrap: break-word;
+	margin-bottom: 10px;
 }
 
 .caixaUsuarioConfig{
@@ -31,6 +32,7 @@
 
 .emailUsuario{
 	font-size: 1em;
+	padding-top: 4px;
 }
 
 .logOut{
@@ -40,3 +42,14 @@
 .logOut:hover{
 	color: #a40000;
 }
+
+.botaoFavoritos{
+	border-radius: none;
+	width: 90%;
+	margin-left: 50%;
+	transform: translate(-50%, 0);
+	text-align: start;
+}
+
+
+

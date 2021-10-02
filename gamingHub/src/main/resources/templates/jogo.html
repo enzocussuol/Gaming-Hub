@@ -41,7 +41,6 @@
 			   						</div>
 			   					</div>
 			   				</div>
-			   				
 			   				<div class="caixaAvaliacao">			   	
 			   					<div th:if="${jogo.dados.metacritica != null}">
 				   					<h2 class="textoAvaliacao" th:text="'Nota Metacritic: ' + ${jogo.dados.metacritica.pontuacao}"></h2>
@@ -55,14 +54,38 @@
 			   				<div class="caixaFotos">
 			   					<h3 class="fotos">Fotos</h3>
 			   					<div class="caixaFoto" th:each="i: ${#numbers.sequence(0, 3)}">
-			   						<a th:href="${jogo.dados.imagens.get(i).imgCompleta}"><img class="img-fluid" th:src="${jogo.dados.imagens.get(i).thumbnail}"></a>
+			   						<a th:href="${jogo.dados.imagens.get(i).imgCompleta}" target="_blank"><img class="img-fluid" th:src="${jogo.dados.imagens.get(i).thumbnail}"></a>
 			   					</div>
 			   				</div>
 						</div>
 						<div class="col caixaDireita">
-							<div class="caixaInformacaoJogo">
-								<h1 class="titulo" th:text="${jogo.dados.nome}"></h1>
-							</div>
+							<th:block th:if="${usuario == null}">
+								<div class="caixaInformacaoJogo caixaNomeJogoDeslogado">
+									<h1 class="titulo" th:text="${jogo.dados.nome}"></h1>
+								</div>
+							</th:block>
+							<th:block th:unless="${usuario == null}">
+								<div class="caixaDupla">
+									<div class="caixaInformacaoJogo caixaNomeJogoLogado">
+										<h1 class="titulo" th:text="${jogo.dados.nome}"></h1>
+									</div>
+									<!-- 
+										0 = nao fazer nada
+										1 = true
+										-1 = false
+									 -->
+									<th:block th:if="${favorito == 1}">
+										<a th:href="@{/jogo?idUnico=} + ${idUnico} + '&id=' + ${jogo.dados.id} + '&favorito=-1'" class="caixaFavorito">
+											<i class="fas fa-heart iconeCoracao" style="color: red;"></i>
+										</a>
+									</th:block>
+									<th:block th:unless="${favorito == 1}">
+										<a th:href="@{/jogo?idUnico=} + ${idUnico} + '&id=' + ${jogo.dados.id} + '&favorito=1'" class="caixaFavorito">
+											<i class="fas fa-heart iconeCoracao" style="color: lightgray;"></i>
+										</a>
+									</th:block>
+								</div>
+							</th:block>
 							<div class="caixaInformacaoJogo">
 								<h2 class="desenvolvedores" th:text="'Desenvolvedores: ' + ${jogo.dados.desenvolvedores.get(0)}"></h2>
 							</div>

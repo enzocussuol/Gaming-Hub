@@ -1,5 +1,6 @@
 package br.ufes.inf.gamingHub.catalogo;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,27 +17,27 @@ public class Catalogo {
 	public Catalogo() {
 		try {
 			File arquivoIdsJogos = new File("arquivosDados/idsJogos.txt");
-			Scanner leitor = new Scanner(arquivoIdsJogos);
 			
 			Jogo jogo = new Jogo();
 			String id;
 			
 			String url = "https://store.steampowered.com/api/appdetails?lang=pt-br&appids=";
 			
-			for(int i = 0; i < 20; i++) {
-				id = leitor.nextLine();
-				
+			BufferedReader br = new BufferedReader(new FileReader(arquivoIdsJogos));
+					
+		    while ((id = br.readLine()) != null) {
 				Jogo novojogo = jogo.deserializa(url + id);
 				
 				if(novojogo != null) {
-					jogos.put(id, novojogo);		
+					jogos.put(id, novojogo);	
 				}
-			}
-			
-			leitor.close();
+		    }
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel ler do arquivo idsJogos.txt");
 			System.exit(0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		try {

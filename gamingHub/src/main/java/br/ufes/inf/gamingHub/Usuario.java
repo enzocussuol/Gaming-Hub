@@ -1,5 +1,9 @@
 package br.ufes.inf.gamingHub;
 
+import java.util.ArrayList;
+
+import br.ufes.inf.gamingHub.catalogo.Jogo;
+
 public class Usuario {
 	private String nome;
 	private String email;
@@ -7,6 +11,7 @@ public class Usuario {
 	private String confirmacaoSenha;
 	private String idUnico;
 	private String imgPerfil;
+	private ArrayList<Jogo> jogosFavoritos = new ArrayList<Jogo>();
 	
 	public Usuario() {
 		
@@ -18,8 +23,6 @@ public class Usuario {
 		this.senha = senha;
 		this.idUnico = idUnico;
 		this.imgPerfil = "https://robohash.org/" + email;
-		
-		System.out.println(this.imgPerfil);
 	}
 	
 	public String getNome() {
@@ -70,5 +73,9 @@ public class Usuario {
 		str += "\n" + nome + "," + senha + "," + email + "," + idUnico;
 		
 		return str;
+	}
+
+	public ArrayList<Jogo> getJogosFavoritos() {
+		return jogosFavoritos;
 	}
 }
