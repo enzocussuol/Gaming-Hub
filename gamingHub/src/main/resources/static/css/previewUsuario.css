@@ -22,7 +22,6 @@
 
 .caixaUsuarioConfig{
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 }
 
@@ -33,6 +32,7 @@
 .emailUsuario{
 	font-size: 1em;
 	padding-top: 4px;
+	margin-right: 17px;
 }
 
 .logOut{

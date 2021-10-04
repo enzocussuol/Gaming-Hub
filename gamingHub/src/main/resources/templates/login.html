@@ -17,12 +17,8 @@
     <div th:replace="~{cabecalho :: cabecalho}"></div>
     
 	<div class="caixaRegistro">
-		<div th:if="${usuarioLogado != null}">
-			Nome de usuário ou senha inválidos!
-		</div>
-		<div th:if="${param.logout}">
-			Você está desconectado(a)!
-		</div>
+		<th:block th:if="${senhaIncorreta}"><script>alert("Senha inserida incorreta")</script></th:block>
+		<th:block th:if="${nomeIncorreto}"><script>alert("Nome inserido incorreto")</script></th:block>
 	
 		<form class="form-horizontal" th:action="@{/login}" th:object="${usuario}" method="POST">
 		  <fieldset>

@@ -49,7 +49,8 @@
 			   					<div th:unless="${jogo.dados.metacritica != null}">
 			   						<h3 class="erroMetacritica">Não foi possivel linkar diretamente, procure no site <a th:href="'https://www.metacritic.com/search/all/'+${jogo.dados.nome}+'/results'" class="link-secondary" target="_blank">metacritic</a>.</h3>
 			   					</div>
-			   					<h2 class="tituloAvaliacao" th:text="'Recomendações: ' + ${jogo.dados.recomendacoes.total}"></h2>
+			   					<th:block th:if="${jogo.dados.recomendacoes != null}"><h2 class="tituloAvaliacao" th:text="'Recomendações: ' + ${jogo.dados.recomendacoes.total}"></h2></th:block>
+			   					<th:block th:unless="${jogo.dados.recomendacoes != null}"><h2 class="tituloAvaliacao">Não foi possível obter o número de recomendações desse jogo.</h2></th:block>
 			   				</div>
 			   				<div class="caixaFotos">
 			   					<h3 class="fotos">Fotos</h3>

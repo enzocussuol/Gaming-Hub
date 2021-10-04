@@ -31,11 +31,16 @@ public class Catalogo {
 				if(novojogo != null) {
 					jogos.put(id, novojogo);	
 				}
+				
+				Thread.sleep(0);
 		    }
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel ler do arquivo idsJogos.txt");
 			System.exit(0);
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

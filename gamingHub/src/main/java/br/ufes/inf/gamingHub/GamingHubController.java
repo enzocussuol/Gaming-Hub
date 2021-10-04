@@ -97,21 +97,36 @@ public class GamingHubController{
 		model.addAttribute("ordena", ordena);
 		model.addAttribute("busca", busca);
 		model.addAttribute("idUnico", idUnico);
-		
-		System.out.println(busca.getNomebusca());
-		
+				
 		return this.getIndex(numPagina, ordena, busca, idUnico, false, false, model);
 	}
 	
 	
 	@GetMapping("/registro")
-	public String getRegistro(Model model) {
+	public String getRegistro(Model model, boolean usuarioJaExiste) {
 		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("usuarioJaExiste", usuarioJaExiste);
+		
 		return "registro";
 	}
 	
 	@PostMapping("/registro")
-	public String handleRegistro(@ModelAttribute Usuario usuario, Model model) {
+	public String handleRegistro(@ModelAttribute Usuario usuario, Model model) throws CsvValidationException, IOException {
+		try {
+			CSVReader leitor = new CSVReader(new FileReader("arquivosDados/registros.csv"));
+			String[] campos;
+			
+			leitor.readNext();
+			while((campos = leitor.readNext()) != null) {
+				if(usuario.getNome().equals(campos[0])) return this.getRegistro(model, true);
+			}
+			
+			leitor.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Nao foi possivel ler do arquivo registros.csv");
+			System.exit(0);
+		}
+		
 		try {
 			FileWriter escritor = new FileWriter("arquivosDados/registros.csv", true);
 			
@@ -125,12 +140,15 @@ public class GamingHubController{
 			System.out.println("Nao foi possivel escrever em registros.csv");
 		}
 		
-		return this.getLogin(model);
+		return this.getLogin(model, false, false);
 	}
 	
 	@GetMapping("/login")
-	public String getLogin(Model model) {
+	public String getLogin(Model model, boolean senhaIncorreta, boolean nomeIncorreto) {
 		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("senhaIncorreta", senhaIncorreta);
+		model.addAttribute("nomeIncorreto", nomeIncorreto);
+		
 		return "login";
 	}
 	
@@ -143,8 +161,11 @@ public class GamingHubController{
 			String[] campos;
 			
 			leitor.readNext();
+			int i = 0;
 			while((campos = leitor.readNext()) != null) {
+				System.out.println(i++);
 				nome = campos[0];
+				
 				if(usuario.getNome().equals(nome)) {
 					senha = campos[1];
 					if(usuario.getSenha().equals(senha)) {
@@ -155,19 +176,25 @@ public class GamingHubController{
 						
 						System.out.print("Usuario ativo adicionado! id = ");
 						System.out.println(idUnico);
-						break;
+						
+						leitor.close();
+						
+						Busca busca = new Busca("");
+						return this.getIndex(0,0,busca,idUnico,false,false,model);
+					}else {
+						leitor.close();
+						
+						return this.getLogin(model, true, false);
 					}
 				}
 			}
-			
 			leitor.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel ler do arquivo registros.csv");
 			System.exit(0);
 		}
 		
-		Busca busca = new Busca("");
-		return this.getIndex(0,0,busca,idUnico,false,false,model);
+		return this.getLogin(model, false, true);
 	}
 	
 	@GetMapping("/jogo")
@@ -245,6 +272,8 @@ class ComparaJogoZA implements Comparator<Jogo>{
 class ComparaJogoRec implements Comparator<Jogo>{
 	@Override
 	public int compare(Jogo j1, Jogo j2) {
+		if(j1.dados.recomendacoes == null) return 1;
+		if(j2.dados.recomendacoes == null) return -1;
 		return j2.dados.recomendacoes.total - j1.dados.recomendacoes.total;
 	}
 }
