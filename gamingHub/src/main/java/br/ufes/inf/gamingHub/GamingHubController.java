@@ -32,7 +32,8 @@ public class GamingHubController{
 	@GetMapping("/GamingHub")
 	public String getIndex(@RequestParam(defaultValue="0") int numPagina, 
 			@RequestParam(defaultValue="0") int ordena, 
-			@RequestParam(defaultValue="") Busca busca, 
+			@RequestParam(defaultValue="") Busca busca,
+			@RequestParam(defaultValue="") String buscastring,
 			@RequestParam(defaultValue="") String idUnico,
 			@RequestParam(defaultValue="false") boolean logout,
 			@RequestParam(defaultValue="false") boolean favorito,
@@ -43,45 +44,58 @@ public class GamingHubController{
 		if(!idUnico.equals("")) {
 			usuario = usuarios.get(idUnico);
 		}
+		if(buscastring!="") {
+			busca = new Busca();
+			busca.setNomebusca(buscastring);
+		}
 		
 		ArrayList<Jogo> jogos;
 		
 		if(favorito == true) jogos = usuario.getJogosFavoritos();
 		else jogos = new ArrayList<Jogo>(catalogo.getJogos().values());
 		
+
 		int tamJogos = jogos.size();
-		int maxPagina = tamJogos/9;
 		
-		if(ordena==1) {
-			Collections.sort(jogos, new ComparaJogoAZ());
-		}else if(ordena==2) {
-			Collections.sort(jogos, new ComparaJogoZA());			
-		}else {
-			Collections.sort(jogos, new ComparaJogoRec());	
+		ArrayList<Jogo> jogosbusca = new ArrayList<Jogo>();
+		for(int i=0; i < tamJogos ;i++) {
+			if(jogos.get(i).dados.nome.toLowerCase().contains(busca.getNomebusca().toLowerCase())) {
+				jogosbusca.add(jogos.get(i));
+			}
 		}
 		
+		int tamJogosBusca = jogosbusca.size();
+		int maxPagina = (tamJogosBusca-1)/9;
 		if(numPagina < 0) numPagina = 0;
 		if(numPagina > maxPagina) numPagina = maxPagina;
 		
+		if(ordena==1) {
+			Collections.sort(jogosbusca, new ComparaJogoAZ());
+		}else if(ordena==2) {
+			Collections.sort(jogosbusca, new ComparaJogoZA());
+		}else {
+			Collections.sort(jogosbusca, new ComparaJogoRec());
+		}
+		
+		//System.out.println(maxPagina);
+		//for(Jogo teste:jogosbusca) System.out.println(teste.dados.nome);
+		
+		buscastring = busca.getNomebusca();
+	
 		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();
-		for(int i = 0, j = 0; i + 9*numPagina < tamJogos; i++) {
-			if(j < 9) {
-				
-				if(jogos.get(i+9*numPagina).dados.nome.contains(busca.getNomebusca())) {
-					jogosatuais.add(jogos.get(i+9*numPagina));		
-					j++;
-				}
-				
-			}else break;
+		for(int i = 9*numPagina, j = 0; i < tamJogosBusca && j < 9; i++, j++) {
+			jogosatuais.add(jogosbusca.get(i));
 		}
 		
 		model.addAttribute("jogos", jogosatuais);
 		model.addAttribute("numPagina", numPagina);
 		model.addAttribute("ordena", ordena);
 		model.addAttribute("busca", busca);
+		model.addAttribute("buscastring", buscastring);
 		model.addAttribute("idUnico", idUnico);
 		model.addAttribute("favorito", favorito);
 		model.addAttribute("usuario", usuario);
+		model.addAttribute("maxpagina", maxPagina);
 		
 		return "index";
 	}
@@ -98,7 +112,7 @@ public class GamingHubController{
 		model.addAttribute("busca", busca);
 		model.addAttribute("idUnico", idUnico);
 				
-		return this.getIndex(numPagina, ordena, busca, idUnico, false, false, model);
+		return this.getIndex(numPagina, ordena, busca, "", idUnico, false, false, model);
 	}
 	
 	
@@ -161,9 +175,7 @@ public class GamingHubController{
 			String[] campos;
 			
 			leitor.readNext();
-			int i = 0;
 			while((campos = leitor.readNext()) != null) {
-				System.out.println(i++);
 				nome = campos[0];
 				
 				if(usuario.getNome().equals(nome)) {
@@ -180,7 +192,7 @@ public class GamingHubController{
 						leitor.close();
 						
 						Busca busca = new Busca("");
-						return this.getIndex(0,0,busca,idUnico,false,false,model);
+						return this.getIndex(0,0,busca,"",idUnico,false,false,model);
 					}else {
 						leitor.close();
 						

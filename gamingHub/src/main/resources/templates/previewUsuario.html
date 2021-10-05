@@ -3,7 +3,7 @@
     	<div class="caixaImagemUsuario">
     		<img th:src="${usuario.getImgPerfil()}" class="img-fluid">
     	</div>
-    	<div class="caixaInformacoesUsuario">
+    	<div class="caixaInformacoesUsuario quebraTexto">
 			<h2 class="nomeUsuario" th:text="${usuario.getNome()}"></h2>
 			<div class="caixaUsuarioConfig">
 				<h3 class="emailUsuario" th:text="${usuario.getEmail()}"></h3>

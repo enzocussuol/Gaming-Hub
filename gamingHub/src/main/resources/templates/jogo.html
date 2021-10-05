@@ -128,7 +128,7 @@
 		   						<div th:unless="${usuario == null}">
 		   							<form class="form-group" th:action="@{/jogo?id=} + ${jogo.dados.id} + '&idUnico=' + ${idUnico}" th:object="${comentario}" method="POST">
 										   <label class="adicionarComentario" for="exampleFormControlTextarea1">Adicionar um novo comentário</label>
-										   <textarea th:field="*{descricao}" class="form-control comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+										   <textarea th:field="*{descricao}" class="form-control comentario" id="exampleFormControlTextarea1" rows="3" maxlength="280"></textarea>
 										   <button class="btn btn-outline-secondary" type="submit">Confirmar</button>
 									</form>
 		   						</div>

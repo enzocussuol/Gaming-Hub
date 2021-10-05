@@ -51,5 +51,6 @@
 	text-align: start;
 }
 
-
-
+.quebraTexto{
+	word-break: break-all;
+}

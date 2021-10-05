@@ -16,7 +16,7 @@ public class Catalogo {
 	
 	public Catalogo() {
 		try {
-			File arquivoIdsJogos = new File("arquivosDados/idsJogos.txt");
+			File arquivoIdsJogos = new File("arquivosDados/idsJogosTeste.txt");
 			
 			Jogo jogo = new Jogo();
 			String id;
@@ -32,7 +32,7 @@ public class Catalogo {
 					jogos.put(id, novojogo);	
 				}
 				
-				Thread.sleep(0);
+				Thread.sleep(100);
 		    }
 		} catch (FileNotFoundException e) {
 			System.out.println("Nao foi possivel ler do arquivo idsJogos.txt");

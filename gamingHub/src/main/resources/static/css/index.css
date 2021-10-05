@@ -1,10 +1,11 @@
 .corpo{
 	background-color: whitesmoke;
+	word-break: break-word;
 }
 
 .caixaCabecalho{
 	width: 100%;
-	background-color: black;
+	background-color: #191919;
 }
 
 .logo{
