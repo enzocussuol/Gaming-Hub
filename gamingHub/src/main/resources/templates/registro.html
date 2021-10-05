@@ -28,8 +28,8 @@
 		      <!-- Username -->
 		      <label class="control-label"  for="username">Nome de usuário</label>
 		      <div class="controls">
-		        <input th:field="*{nome}" type="text" id="username" name="username" placeholder="" class="input-xlarge" required maxlength="50">
-		        <p class="help-block">Nomes de usuários podem conter letras e números, com no máximo 50 caracteres</p>
+		        <input th:field="*{nome}" type="text" id="username" name="username" placeholder="" class="input-xlarge" required maxlength="20">
+		        <p class="help-block">Nomes de usuários podem conter letras e números, com no máximo 20 caracteres</p>
 		      </div>
 		    </div>
 		 
@@ -71,6 +71,9 @@
 	</div>
 	<div class="caixaSugestaoLogin">
 		<h2>Já possui uma conta? Faça <a class="link-secondary" th:href="@{/login}">login</a> agora mesmo!</h2>
+	</div>
+	<div class="rodapeMenor" th:fragment="rodape">
+		<h5 class="mensagemRodapeMenor">Desenvolvido por Danilo e Enzo &reg;</h5>
 	</div>
 	
 	<script src="/js/validacaoRegistro.js"></script>

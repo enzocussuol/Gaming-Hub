@@ -66,3 +66,25 @@ a.caixaJogo{
 	font-size: 1.3em;
 	color: #212529;
 }
+
+.rodape, .rodapeMenor{
+	background-color: #191919;
+	text-align: center;
+	padding: 5px 0px;
+}
+
+.mensagemRodape, .mensagemRodapeMenor{
+	color: #ff9000;
+}
+
+.rodapeMenor{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+
+
+
+
+
