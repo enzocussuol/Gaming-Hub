@@ -7,11 +7,13 @@
 			<h2 class="nomeUsuario" th:text="${usuario.getNome()}"></h2>
 			<div class="caixaUsuarioConfig">
 				<h3 class="emailUsuario" th:text="${usuario.getEmail()}"></h3>
-				<a th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&logout=true'" class="btn"><i class="fas fa-sign-out-alt logOut"></i></a>
 			</div>
     	</div>
     </div>
     <a th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&favorito=true'" class="btn btn-outline-danger botaoFavoritos">
     	<h4>Exibir favoritos! <i class="fas fa-heart"></i></h4>
+    </a>
+    <a th:href="@{/GamingHub?idUnico=} + ${idUnico} + '&logout=true'" class="btn btn-outline-dark botaoDeslogar">
+    	<h4>Deslogar <i class="fas fa-sign-out-alt logOut"></i></h4>
     </a>
 </div>

@@ -77,9 +77,6 @@ public class GamingHubController{
 			Collections.sort(jogosbusca, new ComparaJogoRec());
 		}
 		
-		//System.out.println(maxPagina);
-		//for(Jogo teste:jogosbusca) System.out.println(teste.dados.nome);
-		
 		buscastring = busca.getNomebusca();
 	
 		ArrayList<Jogo> jogosatuais = new ArrayList<Jogo>();

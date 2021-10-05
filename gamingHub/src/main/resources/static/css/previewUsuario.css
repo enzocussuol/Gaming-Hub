@@ -32,23 +32,18 @@
 .emailUsuario{
 	font-size: 1em;
 	padding-top: 4px;
-	margin-right: 17px;
 }
 
-.logOut{
-	font-size: 1.5em;	
-}
-
-.logOut:hover{
-	color: #a40000;
-}
-
-.botaoFavoritos{
+.botaoFavoritos, .botaoDeslogar{
 	border-radius: none;
 	width: 90%;
 	margin-left: 50%;
 	transform: translate(-50%, 0);
 	text-align: start;
+}
+
+.botaoFavoritos{
+	margin-bottom: 10px;
 }
 
 .quebraTexto{

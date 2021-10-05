@@ -16,7 +16,7 @@ public class Catalogo {
 	
 	public Catalogo() {
 		try {
-			File arquivoIdsJogos = new File("arquivosDados/idsJogosTeste.txt");
+			File arquivoIdsJogos = new File("arquivosDados/idsJogos100.txt");
 			
 			Jogo jogo = new Jogo();
 			String id;
