@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -124,11 +125,12 @@ public class GamingHubController{
 	@PostMapping("/registro")
 	public String handleRegistro(@ModelAttribute Usuario usuario, Model model) throws CsvValidationException, IOException {
 		try {
-			CSVReader leitor = new CSVReader(new FileReader("arquivosDados/registros.csv"));
+			CSVReader leitor = new CSVReader(new FileReader(ResourceUtils.getFile("classpath:arquivosDados/registros.csv")));
 			String[] campos;
 			
-			leitor.readNext();
 			while((campos = leitor.readNext()) != null) {
+				for(String str: campos) System.out.println(str);
+				
 				if(usuario.getNome().equals(campos[0])) return this.getRegistro(model, true);
 			}
 			
@@ -139,7 +141,7 @@ public class GamingHubController{
 		}
 		
 		try {
-			FileWriter escritor = new FileWriter("arquivosDados/registros.csv", true);
+			FileWriter escritor = new FileWriter(ResourceUtils.getFile("classpath:arquivosDados/registros.csv"), true);
 			
 			String idUnico = UUID.nameUUIDFromBytes(usuario.getNome().getBytes()).toString();
 			usuario.setIdUnico(idUnico);
@@ -166,9 +168,8 @@ public class GamingHubController{
 	@PostMapping("/login")
 	public String handleLogin(@ModelAttribute Usuario usuario, Model model) throws CsvValidationException, IOException {
 		String nome, senha, email, idUnico = "";
-		
 		try {
-			CSVReader leitor = new CSVReader(new FileReader("arquivosDados/registros.csv"));
+			CSVReader leitor = new CSVReader(new FileReader(ResourceUtils.getFile("classpath:arquivosDados/registros.csv")));
 			String[] campos;
 			
 			leitor.readNext();
@@ -239,7 +240,7 @@ public class GamingHubController{
 			@RequestParam String id, 
 			@RequestParam(defaultValue="") String idUnico) {
 		try {
-			FileWriter escritor = new FileWriter("arquivosDados/comentarios.csv", true);
+			FileWriter escritor = new FileWriter(ResourceUtils.getFile("classpath:arquivosDados/comentarios.csv"), true);
 			
 			Usuario usuario = usuarios.get(idUnico);
 			

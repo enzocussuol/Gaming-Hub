@@ -32,12 +32,6 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
@@ -71,8 +65,13 @@
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>2.0.8</version>
+                <configuration>
+    			  <appName>gaming-hub-pi</appName>
+				  <processTypes>
+				     <web>java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* br.ufes.inf.gamingHub.GamingHubApplication</web>
+				  </processTypes>
+				</configuration>
             </plugin>
 		</plugins>
 	</build>
-
 </project>

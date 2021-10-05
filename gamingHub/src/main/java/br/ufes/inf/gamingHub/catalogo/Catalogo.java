@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.springframework.util.ResourceUtils;
+
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -16,7 +18,7 @@ public class Catalogo {
 	
 	public Catalogo() {
 		try {
-			File arquivoIdsJogos = new File("arquivosDados/idsJogos100.txt");
+			File arquivoIdsJogos = ResourceUtils.getFile("classpath:arquivosDados/idsJogos100.txt");
 			
 			Jogo jogo = new Jogo();
 			String id;
@@ -46,7 +48,7 @@ public class Catalogo {
 		}
 		
 		try {
-			CSVReader leitor = new CSVReader(new FileReader("arquivosDados/comentarios.csv"));
+			CSVReader leitor = new CSVReader(new FileReader(ResourceUtils.getFile("classpath:arquivosDados/comentarios.csv")));
 			String[] campos;
 			
 			leitor.readNext();

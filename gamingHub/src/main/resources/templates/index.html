@@ -108,7 +108,12 @@
 		   	</div>
 	  	</div>
 	</div>
-	<div th:replace="~{rodape :: rodape}"></div>
+	<div th:if="${jogos.size()==9}" class="rodape">
+		<h5 class="mensagemRodape">Desenvolvido por Danilo e Enzo &reg;</h5>
+	</div>
+	<div th:unless="${jogos.size()==9}" class="rodapeMenor">
+		<h5 class="mensagemRodape">Desenvolvido por Danilo e Enzo &reg;</h5>
+	</div>
 	
 	<script src="https://kit.fontawesome.com/5cdaf0dc04.js" crossorigin="anonymous"></script>
 	
