@@ -1,3 +1,33 @@
-# Gaming-Hub
+# Gaming Hub
 
-https://gaming-hub-pi.herokuapp.com/GamingHub
+## Proposta do projeto
+
+O Gaming Hub surgiu com a intenção de facilitar a vida da comunidade gamer. Nele os usuários podem rapidamente obter informações cruciais, tais como preço, notas e opiniões sobre os jogos que estão no catálogo do site. Além disso, o Gaming Hub proporciona uma interação entre a comunidade a partir de uma aba de comentários, onde cada usuário pode revelar o que achou de um jogo.
+
+Além disso, usuários podem favoritar os jogos que mais os agradam, o que permite uma filtragem específica, para ficar por dentro de tudo o que acontece com esses jogos.
+
+O Gaming Hub utiliza uma API da plataforma Steam para obter os dados sobre os jogos. A API pode ser encontrada no seguinte link:
+
+[API da Steam appdetails](https://store.steampowered.com/api/appdetails?appids=220)
+
+## Como instalar?
+
+O Gaming Hub é uma aplicação web contruída a partir de Java e dos frameworks Maven e Spring. Isso significa que para acessá-la, um usuário tem duas opções: 
+
+1) Se o projeto tiver hospedado em um domínio público, basta entrar na URL disponibilizada. Nesse caso, hospedamos o projeto em um servidor gratuíto da [Heroku](https://dashboard.heroku.com), o qual pode ser encontrado em:
+
+[Visitar o Gaming Hub!](https://gaming-hub-pi.herokuapp.com/GamingHub)
+
+2) Caso o usuário deseje rodar o servidor localmente, é preciso que ele possua o [Maven](https://maven.apache.org/install.html) instalado em seu computador. Feito isso, basta clonar o projeto com:
+
+`git clone https://github.com/enzocussuol/Gaming-Hub/`
+
+E rodar tudo (na pasta raíz) com:
+
+`mvn clean install`
+
+O Gaming Hub estará disponível na url localhost:8080 (localmente).
+
+## Exemplos de uso
+
+O Gaming Hub pode ser utilizado tanto deslogado quanto logado. Como usuário deslogado, é possível pesquisar por jogos e realizar ordenações.
