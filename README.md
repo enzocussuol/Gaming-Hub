@@ -30,4 +30,14 @@ O Gaming Hub estará disponível na url localhost:8080 (localmente).
 
 ## Exemplos de uso
 
-O Gaming Hub pode ser utilizado tanto deslogado quanto logado. Como usuário deslogado, é possível pesquisar por jogos e realizar ordenações.
+O Gaming Hub pode ser utilizado tanto deslogado quanto logado. Como usuário deslogado, é possível pesquisar por jogos e realizar ordenações:
+
+Além disso, usuários deslogados podem checar as informações dos jogos:
+
+Para logar, basta criar uma conta clicando no botao Cadastrar:
+
+Feito o cadastro, o Gaming Hub o redirecionará para página de login:
+
+Agora, ao logar, as informações pessoais estarão à esquerda, assim como uma foto única gerada a partir do email pelo site (robohash)[https://robohash.org/]:
+
+Finalmente, agora o usuário pode, na página de jogo, favoritar e comentar:
