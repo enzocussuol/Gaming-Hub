@@ -57,3 +57,12 @@ Finalmente, agora o usuário pode, na página de jogo, favoritar e comentar:
 ## Licença
 
 O repositório utiliza a licença MIT. Ver `LICENSE` para mais informações.
+
+## Informações sobre os autores
+
+O projeto foi desenvolvido por Danilo Lima e Enzo Cussuol para a disciplina de Projeto Integrado 1, do curso de Ciência da Computação da Universidade Federal do Espírito Santo (UFES).
+
+Email para contato:
+
+Danilo: danilo.erler@gmail.com
+Enzo: enzo@allsystem.com.br
