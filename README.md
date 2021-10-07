@@ -64,5 +64,5 @@ O projeto foi desenvolvido por Danilo Lima e Enzo Cussuol para a disciplina de P
 
 Email para contato:
 
-Danilo: danilo.erler@gmail.com <br />
+Danilo: danilinhoerlerlima@gmail.com <br />
 Enzo: enzo@allsystem.com.br
