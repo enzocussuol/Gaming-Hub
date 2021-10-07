@@ -53,3 +53,5 @@ Agora, ao logar, as informações pessoais estarão à esquerda, assim como uma 
 Finalmente, agora o usuário pode, na página de jogo, favoritar e comentar:
 
 ![img6](imgsREADME/telaJogoLogado.png)
+
+## Licença
