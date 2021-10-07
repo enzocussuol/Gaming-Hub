@@ -55,3 +55,5 @@ Finalmente, agora o usuário pode, na página de jogo, favoritar e comentar:
 ![img6](imgsREADME/telaJogoLogado.png)
 
 ## Licença
+
+O repositório utiliza a licença MIT. Ver `LICENSE` para mais informações.
