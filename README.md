@@ -32,6 +32,8 @@ O Gaming Hub estará disponível na url localhost:8080 (localmente).
 
 O Gaming Hub pode ser utilizado tanto deslogado quanto logado. Como usuário deslogado, é possível pesquisar por jogos e realizar ordenações:
 
+![teste](imgsREADME/telaPrincipalDeslogado.png)
+
 Além disso, usuários deslogados podem checar as informações dos jogos:
 
 Para logar, basta criar uma conta clicando no botao Cadastrar:
