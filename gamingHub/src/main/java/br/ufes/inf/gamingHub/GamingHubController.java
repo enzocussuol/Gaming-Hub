@@ -258,11 +258,6 @@ public class GamingHubController{
 		
 		return this.getJogo(model, id, idUnico, 0);
 	}
-	
-	@GetMapping("/usuario")
-	public String getPaginaUsuario(Model model, @RequestParam String idUnico) {
-		return "usuario";
-	}
 }
 
 class ComparaJogoAZ implements Comparator<Jogo>{

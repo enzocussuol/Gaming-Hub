@@ -31,7 +31,7 @@ public class Catalogo {
 				Jogo novojogo = jogo.deserializa(url + id);
 				
 				if(novojogo != null) {
-					jogos.put(id, novojogo);	
+					jogos.put(id, novojogo);
 				}
 				
 				Thread.sleep(100);
