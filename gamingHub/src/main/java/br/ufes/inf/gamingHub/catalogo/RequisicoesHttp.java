@@ -7,7 +7,17 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+/** Classe que lida com as requisições Http
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 public class RequisicoesHttp {
+	/** Função que lida com as requisições HTTP
+	 * 
+	 * @param url indica o endereço a ser lidado
+	 * @return
+	 */
 	public static String get(String url) {
 		String respostaHttp = null;
 		

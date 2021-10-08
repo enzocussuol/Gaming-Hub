@@ -25,11 +25,28 @@ import br.ufes.inf.gamingHub.catalogo.Catalogo;
 import br.ufes.inf.gamingHub.catalogo.Comentario;
 import br.ufes.inf.gamingHub.catalogo.Jogo;
 
+/** Classe que lida com os requests do usuário
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 @Controller
 public class GamingHubController{
 	public static Catalogo catalogo = new Catalogo();
 	public static HashMap<String, Usuario> usuarios = new HashMap<String, Usuario>();
 	
+	/** Função que chama o html da página principal com o catálogo de jogos adaptado conforme os parametros enviados
+	 * 
+	 * @param numPagina indica o numero da pagina atual do catálogo
+	 * @param ordena indica o parametro de ordenação do catálogo
+	 * @param busca indica o parametro de busca dentre os jogos do catalogo
+	 * @param buscastring indica o parametro de busca dentre os jogos do catalogo
+	 * @param idUnico indica o id do usuário, caso esteja logado
+	 * @param logout indica se o usuário está se deslogando
+	 * @param favorito indica se o catálogo deve conter apenas os jogos favoritos do usuário
+	 * @param model modelo com os parametros enviados ao html
+	 * @return
+	 */
 	@GetMapping("/GamingHub")
 	public String getIndex(@RequestParam(defaultValue="0") int numPagina, 
 			@RequestParam(defaultValue="0") int ordena, 
@@ -98,6 +115,15 @@ public class GamingHubController{
 		return "index";
 	}
 	
+	/** Função que lida com os post dos usuários na página principal
+	 * 
+	 * @param busca indica o parametro de busca dentre os jogos do catalogo
+	 * @param numPagina indica o numero da pagina atual do catálogo
+	 * @param ordena indica o parametro de ordenação do catálogo
+	 * @param idUnico indica o id do usuário, caso esteja logado
+	 * @param model modelo com os parametros enviados ao html
+	 * @return
+	 */
 	@PostMapping("/GamingHub")
 	public String buscaTitulo(@ModelAttribute Busca busca,
 							@RequestParam(defaultValue="0") int numPagina, 
@@ -113,7 +139,12 @@ public class GamingHubController{
 		return this.getIndex(numPagina, ordena, busca, "", idUnico, false, false, model);
 	}
 	
-	
+	/** Função que chama o html com os parametros fornecidos
+	 * 
+	 * @param model modelo com os parametros enviados ao html
+	 * @param usuarioJaExiste indica se o usuário já esta cadastrado no site
+	 * @return
+	 */
 	@GetMapping("/registro")
 	public String getRegistro(Model model, boolean usuarioJaExiste) {
 		model.addAttribute("usuario", new Usuario());
@@ -122,6 +153,14 @@ public class GamingHubController{
 		return "registro";
 	}
 	
+	/** Função que cadastra um novo usuário no site
+	 * 
+	 * @param usuario novo usuário a ser cadastrado
+	 * @param model modelo com os parametros enviados ao html
+	 * @return
+	 * @throws CsvValidationException
+	 * @throws IOException
+	 */
 	@PostMapping("/registro")
 	public String handleRegistro(@ModelAttribute Usuario usuario, Model model) throws CsvValidationException, IOException {
 		try {
@@ -156,6 +195,13 @@ public class GamingHubController{
 		return this.getLogin(model, false, false);
 	}
 	
+	/** Função que chama o html da página de login
+	 * 
+	 * @param model modelo com os parametros enviados ao html
+	 * @param senhaIncorreta indica que o a senha do usuário está incorreta
+	 * @param nomeIncorreto indica que o usuário não foi encontrado nos registros da aplicação
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String getLogin(Model model, boolean senhaIncorreta, boolean nomeIncorreto) {
 		model.addAttribute("usuario", new Usuario());
@@ -165,6 +211,14 @@ public class GamingHubController{
 		return "login";
 	}
 	
+	/**
+	 * 
+	 * @param usuario campo com os dados da tentativa de login do usuário
+	 * @param model modelo com os parametros enviados ao html
+	 * @return
+	 * @throws CsvValidationException
+	 * @throws IOException
+	 */
 	@PostMapping("/login")
 	public String handleLogin(@ModelAttribute Usuario usuario, Model model) throws CsvValidationException, IOException {
 		String nome, senha, email, idUnico = "";
@@ -207,6 +261,14 @@ public class GamingHubController{
 		return this.getLogin(model, false, true);
 	}
 	
+	/** função que chama o html da página de um jogo
+	 * 
+	 * @param model modelo com os parametros enviados ao html
+	 * @param id indica o id do jogo a ser visitado
+	 * @param idUnico indica o id do usuário
+	 * @param favorito indica se o jogo está deve ser favoritado/desfavoritado ou mantido
+	 * @return
+	 */
 	@GetMapping("/jogo")
 	public String getJogo(Model model, @RequestParam String id, @RequestParam(defaultValue="") String idUnico, @RequestParam(defaultValue="0") int favorito) {
 		Jogo jogo = catalogo.getJogos().get(id);
@@ -235,6 +297,14 @@ public class GamingHubController{
 		return "jogo";
 	}
 	
+	/** função que lida com os posts do usuário na página de um jogo
+	 * 
+	 * @param comentario contem os dados sobre um novo comentário com seu usuário,
+	 * @param model modelo com os parametros enviados ao html
+	 * @param id indica o id do jogo da página
+	 * @param idUnico indica o id do usuário
+	 * @return
+	 */
 	@PostMapping("/jogo")
 	public String postaComentario(@ModelAttribute Comentario comentario, Model model, 
 			@RequestParam String id, 
@@ -260,6 +330,11 @@ public class GamingHubController{
 	}
 }
 
+/** Classe que extende Comparator para ordenar o catálogo de jogos em ordem alfabética
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 class ComparaJogoAZ implements Comparator<Jogo>{
 	@Override
 	public int compare(Jogo j1, Jogo j2) {
@@ -267,6 +342,11 @@ class ComparaJogoAZ implements Comparator<Jogo>{
 	}
 }
 
+/** Classe que extende Comparator para ordenar o catálogo de jogos em ordem alfabética-invertida
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 class ComparaJogoZA implements Comparator<Jogo>{
 	@Override
 	public int compare(Jogo j1, Jogo j2) {
@@ -274,6 +354,11 @@ class ComparaJogoZA implements Comparator<Jogo>{
 	}
 }
 
+/** Classe que extende Comparator para ordenar o catálogo de jogos conforme o numero de recomendaçoes dos jogos
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 class ComparaJogoRec implements Comparator<Jogo>{
 	@Override
 	public int compare(Jogo j1, Jogo j2) {

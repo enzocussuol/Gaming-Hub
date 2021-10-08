@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import com.google.gson.annotations.SerializedName;
 
+/** Classe que contém todos dados disponiveis na aplicação sobre um jogo
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 public class DadosJogo {
 	@SerializedName("type")
 	public String tipo;

@@ -1,5 +1,10 @@
 package br.ufes.inf.gamingHub;
 
+/** Classe que contem as informações sobre uma busca por nome de um jogo
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 public class Busca {
 	private String nomebusca;
 	

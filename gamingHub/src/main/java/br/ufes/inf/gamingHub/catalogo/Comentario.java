@@ -1,5 +1,11 @@
 package br.ufes.inf.gamingHub.catalogo;
 
+/** Classe com os dados sobre um comentário feito em um jogo
+ * contendo dados sobre o autor do comentário e o texto com o comentário em si
+ * 
+ * @author Danilo Lima e Enzo cussuol
+ *
+ */
 public class Comentario {
 	private String imagemAutorComentario;
 	private String nomeAutorComentario;

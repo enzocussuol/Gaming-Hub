@@ -13,9 +13,17 @@ import org.springframework.util.ResourceUtils;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
+/** Classe que contém o catálogo com os jogos disponiveis na aplicação
+ * 
+ * @author Danilo Lima e Enzo Cussuol
+ *
+ */
 public class Catalogo {
 	public HashMap<String, Jogo> jogos = new HashMap<String, Jogo>();
 	
+	/** Inicializa o catálogo dos jogos fazendo os request nas apis conforme os ids coletados na lista
+	 * 
+	 */
 	public Catalogo() {
 		try {
 			File arquivoIdsJogos = ResourceUtils.getFile("classpath:arquivosDados/idsJogos100.txt");
@@ -68,6 +76,10 @@ public class Catalogo {
 		}
 	}
 	
+	/** Função que retorna o mapa com os jogos do catálogo
+	 * 
+	 * @return
+	 */
 	public HashMap<String, Jogo> getJogos(){
 		return jogos;
 	}
