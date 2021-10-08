@@ -18,7 +18,7 @@ O Gaming Hub é uma aplicação web contruída a partir de Java e dos frameworks
 
 [Visitar o Gaming Hub!](https://gaming-hub-pi.herokuapp.com/GamingHub)
 
-2) Caso o usuário deseje rodar o servidor localmente, é preciso que ele possua o [Maven](https://maven.apache.org/install.html) instalado em seu computador. Feito isso, basta clonar o projeto com:
+2) Caso o usuário deseje rodar o servidor localmente, é preciso que ele possua o [Java](https://www.java.com/pt-BR/) e [Maven](https://maven.apache.org/install.html) instalados em seu computador. Feito isso, basta clonar o projeto com:
 
 `git clone https://github.com/enzocussuol/Gaming-Hub/`
 
